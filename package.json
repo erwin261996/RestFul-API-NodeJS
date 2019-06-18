@@ -1,0 +1,25 @@
+{
+  "name": "apinode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-myconnection": "^1.0.4",
+    "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "sequelize": "^4.42.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
