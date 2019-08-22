@@ -25,6 +25,28 @@ controller.getProductos = (req, res, next) => {
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null})); 
                 else {
                     res.send(JSON.stringify(result[0])); 
+                    
+                    // {
+                    //     "cod": 20,
+                    //     "codigo": "34353453",
+                    //     "nombre": "Cocina",
+                    //     "modelo": "Alter",
+                    //     "categoria": "Bebé",
+                    //     "codpresentacion": 287,
+                    //     "presentacion": "Unidad",
+                    //     "strdescrip": "fghfghfghfghfghfgh",
+                    //     "codfabi": 38,
+                    //     "fabricante": "22 Miles",
+                    //     "codmoneda": 536,
+                    //     "moneda": "Cordoba",
+                    //     "simbolomoneda": "C$",
+                    //     "precompra": 234,
+                    //     "preventa": 567,
+                    //     "estado": 8,
+                    //     "existencias": 234,
+                    //     "ubicacion": "539",
+                    //     "fechacaduca": "2019-08-07"
+                    // }
                 }
             })
         }
@@ -48,15 +70,15 @@ controller.addProductos = (req, res)=>{
     // in intipomoneda int, in incostos decimal(18,2), in inpventa decimal(18,2), in inestado int, 
     // in instock int, in inubicacion int, in strdatecadu varchar(20), in codacceso int
     
-    const { id, strcodigo, strnombre, strmodelo, categoria, strpresenta, strdescripform, fabi, tipoMoneda,
-        strcostos, strpventa, estado, strstock, strubicacion, strdatecadu } = req.body;
+    const { id, strcodigo, strnombre, strmodelo, selectedCategory, selectedPresentacion, strdescripform, selectedFabricantes, selectedTipoMoneda,
+        strcostos, strpventa, selectedEstado, strstock, selectedUbicacion, strdatecadu } = req.body;
 
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
             conx.query('call spfactura_01productos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)',
-                [2,id, strcodigo, strnombre, strmodelo, categoria, strpresenta, strdescripform, fabi, tipoMoneda,
-                    strcostos, strpventa, estado, strstock, strubicacion, strdatecadu], (err, result)=>{
+                [2,id, strcodigo, strnombre, strmodelo, selectedCategory, selectedPresentacion, strdescripform, selectedFabricantes, selectedTipoMoneda,
+                    strcostos, strpventa, selectedEstado, strstock, selectedUbicacion, strdatecadu], (err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {

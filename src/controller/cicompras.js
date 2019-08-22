@@ -24,7 +24,47 @@ controller.getCatalogoProducto = (req, res, next) => {
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null})); 
                 else {
-                    res.send(JSON.stringify(result[0])); 
+                    // Solo Categoria
+                    let categoria = result[0].filter(ite => {
+                        if(ite.fil == 1) {
+                            return ite;
+                        }
+                    });
+
+                    // Solo Articulo
+                    let articulos = result[0].filter(ite => {
+                        if(ite.fil == 2) {
+                            return ite;
+                        }
+                    });
+                    // Solo Proveedores
+                    let listproveedores = result[0].filter(ite => {
+                        if(ite.fil == 3) {
+                            return ite;
+                        }
+                    });
+
+                    let proveedores = listproveedores.map(res => {
+                        return {value: res.id, label: res.strdescrip}
+                    });
+                    // Solo Comprobante
+                    let listcomprobante = result[0].filter(ite => {
+                        if(ite.fil == 4) {
+                            return ite;
+                        }
+                    });
+
+                    let comprobante = listcomprobante.map(res => {
+                        return {value: res.id, label: res.strdescrip}
+                    });
+                    
+                    // JSON Armado :: Finalizado
+                    res.send(JSON.stringify({
+                        "categoria": categoria,
+                        "articulos": articulos,
+                        "proveedores": proveedores,
+                        "comprobante": comprobante
+                    }));
                 }
             })
         }
@@ -34,12 +74,12 @@ controller.getCatalogoProducto = (req, res, next) => {
 
 controller.listaProductos = (req, res, next) => {
     
-    const { inarticulos, incantidad, inpreciocompra, inprecioventa, codacceso } = req.body;
+    const { id, cantidad, costo, codacceso } = req.body;
 
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
-            conx.query('call spfactura_03compras(2,?,?,?,0,?,0,0,"",0,0,0)',[inarticulos, incantidad, inpreciocompra, codacceso],(err, result)=>{
+            conx.query('call spfactura_03compras(2,?,?,?,0,?,0,0,"",0,0,0,0)',[id, cantidad, costo, codacceso],(err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null})); 
                 else {
@@ -58,7 +98,7 @@ controller.getDetaCompras = (req, res, next) => {
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
-            conx.query('call spfactura_03compras(?,0,0,0,0,?,0,0,"",0,0,0)',[1, codacceso],(err, result)=>{
+            conx.query('call spfactura_03compras(?,0,0,0,0,?,0,0,"",0,0,0,0)',[1, codacceso],(err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null})); 
                 else {
@@ -75,7 +115,7 @@ controller.deleteDetaCompra = (req, res, next)=>{
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
-            conx.query('call spfactura_03compras(?,?,0,0,0,?,0,0,"",0,0,0)',[3,id, codacceso], (err, result)=>{
+            conx.query('call spfactura_03compras(?,?,0,0,0,?,0,0,"",0,0,0,0)',[3,id, codacceso], (err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -91,7 +131,7 @@ controller.findDetaComboCompra = (req, res, next)=>{
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
-            conx.query('call spfactura_03compras(?,?,0,0,0,0,0,0,"",0,0,0)',[4,id], (err, result)=>{
+            conx.query('call spfactura_03compras(?,?,0,0,0,0,0,0,"",0,0,0,0)',[4,id], (err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -104,15 +144,12 @@ controller.findDetaComboCompra = (req, res, next)=>{
 
 controller.addfacturacompra = (req, res, next) => {
 
-    /* {"inproveedor":"5","intipocomprobante":"530","strseriecomprobante":"2367","strdetallecomp":"dhfjks sdjfhsdkjfhsjkd",
-  "subtotal":1033,"iva":68.87,"total":1101.87,"codacceso":9} */
-
    const { inproveedor, intipocomprobante, strseriecomprobante, strdetallecomp, subtotal, iva, total, codacceso } = req.body;
          
     req.getConnection((err, conx)=>{
         if(err) next(err);
         else{
-            conx.query("call spfactura_03compras(?,?,0,0,0,?,?,?,?,?,?,?)",[5,inproveedor,codacceso,intipocomprobante,strseriecomprobante,
+            conx.query("call spfactura_03compras(?,?,0,0,0,?,?,?,?,0,?,?,?)",[5,inproveedor,codacceso,intipocomprobante,strseriecomprobante,
                 strdetallecomp, subtotal, iva, total ],(err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
@@ -121,6 +158,20 @@ controller.addfacturacompra = (req, res, next) => {
                 }
             });
         }
+    });
+}
+
+controller.updateitemscompra = (req, res, next) => {
+    
+    const {codmodal, cantidadmodal, submodaltotal, descuentomodal, impuestomodal, totalmodal, codacceso, desctmodal, ivamodal} = req.body;
+
+    req.getConnection((err, conx)=> {
+        err ? next(err)
+        : conx.query('call spfactura_03compras( ?, ?, ?, 0, 0, ?, ?, ?, "", ?, ?, ?, ?)', 
+        [6, codmodal, cantidadmodal, codacceso, desctmodal, ivamodal, submodaltotal, descuentomodal, impuestomodal, totalmodal], (err, result)=>{
+            err ? res.send(JSON.stringify({"status":500, "error": err, "response": null}))
+            : res.send(JSON.stringify(result[0]))
+        })
     });
 }
 
