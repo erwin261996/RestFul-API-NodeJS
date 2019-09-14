@@ -48,5 +48,6 @@ router_user.post('/deleteDetaCompra', cicompras.deleteDetaCompra);
 router_user.post('/findDetaComboCompra', cicompras.findDetaComboCompra);
 router_user.post('/addfacturacompra', cicompras.addfacturacompra);
 router_user.post('/updateitemscompra', cicompras.updateitemscompra);
+router_user.post('/updateitemsdetallecompra', cicompras.updateitemsdetallecompra);
 
 module.exports = router_user;

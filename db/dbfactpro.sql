@@ -11,11 +11,33 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 17/06/2019 23:42:33
+ Date: 14/09/2019 11:58:54
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tb00_empresa
+-- ----------------------------
+DROP TABLE IF EXISTS `tb00_empresa`;
+CREATE TABLE `tb00_empresa`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `foto` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `telefono` int(10) NULL DEFAULT NULL,
+  `celular` int(10) NULL DEFAULT NULL,
+  `ubicacion` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ruc` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `fecharegistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb00_empresa
+-- ----------------------------
+INSERT INTO `tb00_empresa` VALUES (1, 'Ave Inc', NULL, 22508967, 75031178, 'Sombrero Memorial Sandino 1c. al lago 3c. arriba y 75vrs al norte', 'J907845672567836', 'ave@aveinc.com', '2019-09-02 23:04:04');
 
 -- ----------------------------
 -- Table structure for tb01_usuario
@@ -66,7 +88,7 @@ CREATE TABLE `tb02_menu`  (
 -- Records of tb02_menu
 -- ----------------------------
 INSERT INTO `tb02_menu` VALUES (1, 0, 'Dashboard', '', 'ft-home', 1, 8, 'active');
-INSERT INTO `tb02_menu` VALUES (2, 0, 'Inventario', '/productos', 'ft-package', 1, 8, NULL);
+INSERT INTO `tb02_menu` VALUES (2, 0, 'Inventario', '/inventario', 'ft-package', 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (3, 0, 'Fabricantes', '/fabricante', 'ft-slack', 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (4, 9999, 'Compras', 'ui-compras', 'ft-shopping-cart', 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (5, 4, 'Nueva compra', '/compras/compras', NULL, 1, 8, NULL);
@@ -75,7 +97,7 @@ INSERT INTO `tb02_menu` VALUES (7, 0, 'Directorio', '/contactos', 'ft-user', 1, 
 INSERT INTO `tb02_menu` VALUES (8, 7, 'Clientes', '/contactos/clientes', NULL, 1, 9, NULL);
 INSERT INTO `tb02_menu` VALUES (9, 7, 'Proveedores', '/contactos/proveedor', NULL, 1, 9, NULL);
 INSERT INTO `tb02_menu` VALUES (10, 9999, 'Facturación', 'ui-fact', 'ft-bookmark', 1, 8, NULL);
-INSERT INTO `tb02_menu` VALUES (11, 10, 'Nueva venta', 'fact/nventa', NULL, 1, 8, NULL);
+INSERT INTO `tb02_menu` VALUES (11, 10, 'Nueva venta', 'facturar/nventa', NULL, 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (12, 10, 'Adminitrar Facturas', 'fact/admfact', NULL, 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (13, 9999, 'Reportes', 'ui-reportes', 'ft-activity', 1, 8, NULL);
 INSERT INTO `tb02_menu` VALUES (14, 13, 'Reporte de Ventas', 'repo/ventas', NULL, 1, 8, NULL);
@@ -147,7 +169,7 @@ CREATE TABLE `tb04_catalogo`  (
   `fecha` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idxcatalogo`(`id`, `idtabla`, `idgrupo`, `strdescrip`, `estado`, `fecha`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 540 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 559 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb04_catalogo
@@ -178,7 +200,6 @@ INSERT INTO `tb04_catalogo` VALUES (23, 10, 0, 'Disponible', NULL, 9, '2019-04-1
 INSERT INTO `tb04_catalogo` VALUES (24, 10, 0, 'Disponible', NULL, 9, '2019-04-15 20:17:18');
 INSERT INTO `tb04_catalogo` VALUES (25, 0, 99999, 'FABRICANTES', NULL, 9, '2019-04-15 20:17:18');
 INSERT INTO `tb04_catalogo` VALUES (26, 25, 0, 'Apple', NULL, 8, '2019-04-15 20:21:36');
-INSERT INTO `tb04_catalogo` VALUES (27, 25, 0, 'Dell', NULL, 8, '2019-04-15 21:39:12');
 INSERT INTO `tb04_catalogo` VALUES (28, 25, 0, 'Sony', NULL, 8, '2019-04-15 23:01:14');
 INSERT INTO `tb04_catalogo` VALUES (38, 25, 0, '22 Miles', NULL, 8, '2019-04-15 23:05:11');
 INSERT INTO `tb04_catalogo` VALUES (39, 25, 0, '3M', NULL, 8, '2019-04-15 23:05:36');
@@ -581,12 +602,31 @@ INSERT INTO `tb04_catalogo` VALUES (530, 529, 0, 'Factura', NULL, 8, '2019-05-08
 INSERT INTO `tb04_catalogo` VALUES (531, 529, 0, 'Boleta', NULL, 8, '2019-05-08 18:28:19');
 INSERT INTO `tb04_catalogo` VALUES (532, 529, 0, 'Ticket', NULL, 8, '2019-05-08 18:28:26');
 INSERT INTO `tb04_catalogo` VALUES (533, 0, 99999, 'IVA', 'Inpuestos', 8, '2019-05-12 09:24:41');
-INSERT INTO `tb04_catalogo` VALUES (534, 533, 0, '15', NULL, 8, '2019-05-12 09:24:56');
+INSERT INTO `tb04_catalogo` VALUES (534, 533, 0, '15', '1', 8, '2019-05-12 09:24:56');
 INSERT INTO `tb04_catalogo` VALUES (535, 0, 99999, 'MONEDA', NULL, 8, '2019-05-13 21:11:54');
-INSERT INTO `tb04_catalogo` VALUES (536, 535, 0, 'Cordoba', 'C$', 8, '2019-05-13 21:12:02');
+INSERT INTO `tb04_catalogo` VALUES (536, 535, 1, 'Cordoba', 'C$', 8, '2019-05-13 21:12:02');
 INSERT INTO `tb04_catalogo` VALUES (537, 535, 0, 'Dolar', '$', 8, '2019-05-13 21:12:06');
 INSERT INTO `tb04_catalogo` VALUES (538, 0, 99999, 'UBICACION', NULL, 8, '2019-05-13 23:04:31');
 INSERT INTO `tb04_catalogo` VALUES (539, 538, 0, 'Bodega', NULL, 8, '2019-05-13 23:04:46');
+INSERT INTO `tb04_catalogo` VALUES (540, 0, 99999, 'ESTADO FACTURAS', NULL, 8, '2019-07-04 13:16:02');
+INSERT INTO `tb04_catalogo` VALUES (541, 540, 0, 'ACTIVO', NULL, 8, '2019-07-04 13:16:27');
+INSERT INTO `tb04_catalogo` VALUES (542, 540, 0, 'SUSPENDIDO', NULL, 8, '2019-07-04 13:16:38');
+INSERT INTO `tb04_catalogo` VALUES (543, 540, 0, 'CANCELADO', NULL, 8, '2019-07-04 13:16:49');
+INSERT INTO `tb04_catalogo` VALUES (544, 25, 0, 'Dell', NULL, 8, '2019-08-06 20:37:22');
+INSERT INTO `tb04_catalogo` VALUES (545, 25, 0, 'Microsoft', NULL, 8, '2019-08-07 20:02:20');
+INSERT INTO `tb04_catalogo` VALUES (546, 0, 99999, 'tipoCompra', NULL, 8, '2019-09-05 00:19:05');
+INSERT INTO `tb04_catalogo` VALUES (547, 546, 0, 'Recibir', NULL, 8, '2019-09-05 00:19:35');
+INSERT INTO `tb04_catalogo` VALUES (548, 546, 0, 'Regresar', NULL, 8, '2019-09-05 00:19:40');
+INSERT INTO `tb04_catalogo` VALUES (549, 546, 0, 'Orden de compra', NULL, 8, '2019-09-05 00:19:48');
+INSERT INTO `tb04_catalogo` VALUES (550, 0, 99999, 'FORMA PAGO', NULL, 8, '2019-09-05 00:25:22');
+INSERT INTO `tb04_catalogo` VALUES (551, 550, 0, 'EFECTIVO', NULL, 8, '2019-09-05 00:25:30');
+INSERT INTO `tb04_catalogo` VALUES (552, 550, 0, 'CHEQUE', NULL, 8, '2019-09-05 00:25:33');
+INSERT INTO `tb04_catalogo` VALUES (553, 550, 0, 'TARJETA DE DÉBITO', NULL, 8, '2019-09-05 00:26:17');
+INSERT INTO `tb04_catalogo` VALUES (554, 550, 0, 'TARETA DE CRÉDITO', NULL, 8, '2019-09-05 00:26:25');
+INSERT INTO `tb04_catalogo` VALUES (555, 550, 0, 'TRANSACCIÓN', NULL, 8, '2019-09-05 00:26:31');
+INSERT INTO `tb04_catalogo` VALUES (556, 0, NULL, 'CONFIRMACION', NULL, 8, '2019-09-07 16:18:00');
+INSERT INTO `tb04_catalogo` VALUES (557, 556, 0, 'SI', NULL, 8, '2019-09-07 16:18:12');
+INSERT INTO `tb04_catalogo` VALUES (558, 556, 0, 'NO', NULL, 8, '2019-09-07 16:18:21');
 
 -- ----------------------------
 -- Table structure for tb05_fabricante
@@ -637,21 +677,23 @@ CREATE TABLE `tb06_productos`  (
   `imagen` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `fechacompra` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `codacceso` int(5) NULL DEFAULT NULL,
+  `inexonerado` int(3) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idxproductos`(`id`, `codigo`, `nombre`, `modelo`, `presentacion`, `descripcion`, `codproveedor`, `costo`, `iva`, `codfabricante`, `precioventa`, `tipomoneda`, `estado`, `stock`, `imagen`, `fechacompra`, `categoria`, `ubicacion`, `fechacaduca`, `codacceso`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb06_productos
 -- ----------------------------
-INSERT INTO `tb06_productos` VALUES (5, '12345', 'Vaso', '', 290, 287, 'assdsdadasdasdas', 28, 536, 123.00, 355.00, 8, 67, '9', '2019-04-27', NULL, 0.00, '', '2019-04-27 21:30:31', NULL);
-INSERT INTO `tb06_productos` VALUES (6, '287829', 'Abanico', '', 290, 287, 'assdsdadasdasdas', 28, 537, 200.00, 250.00, 8, 67, '9', '2019-04-27', NULL, 0.00, '', '2019-04-27 21:30:31', NULL);
-INSERT INTO `tb06_productos` VALUES (7, '237687', 'Telefono Celular', 'Apple', 298, 287, 'Iphone SE', 26, 537, 190.00, 230.00, 8, 40, '8', '2019-05-13', NULL, 0.00, '', '2019-05-13 19:59:50', NULL);
-INSERT INTO `tb06_productos` VALUES (8, '327893', 'Reloj Rolex', 'Rolex 3489', 298, 287, 'Reloj Heop', 131, 537, 340.00, 420.80, 8, 20, '8', '2019-05-13', NULL, 0.00, '', '2019-05-13 20:01:23', NULL);
-INSERT INTO `tb06_productos` VALUES (9, '345345345', 'Arroz', '', 290, 287, '', 0, 536, 500.00, 780.99, 8, 60, '0', '2019-05-31', NULL, 0.00, '', '2019-05-13 20:42:13', NULL);
-INSERT INTO `tb06_productos` VALUES (12, '238978', 'Camisa', 'M', 319, 287, 'Camisa Adida', 50, 537, 7.00, 25.80, 8, 46, '539', '2019-05-17', NULL, 0.00, '', '2019-05-17 01:14:29', NULL);
-INSERT INTO `tb06_productos` VALUES (13, '389389', 'Silla Ejecutiva', 'Freego', 299, 287, 'Silla Ejecutiva', 42, 536, 3000.00, 3200.00, 8, 4, '539', '2019-05-17', NULL, 0.00, '', '2019-05-17 01:19:51', NULL);
-INSERT INTO `tb06_productos` VALUES (16, '23423', 'wqad', '', 290, 287, '', 0, 537, 45.00, 67.00, 8, 56, '0', '2019-05-18', NULL, 0.00, '', '2019-05-18 20:40:20', NULL);
+INSERT INTO `tb06_productos` VALUES (5, '12345', 'Vaso', '', 290, 287, 'assdsdadasdasdas', 28, 536, 123.00, 355.00, 8, 67, '9', '2019-04-27', NULL, 0.00, '', '2019-04-27 21:30:31', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (6, '287829', 'Abanico', '', 290, 287, 'assdsdadasdasdas', 28, 537, 200.00, 250.00, 8, 67, '9', '2019-04-27', NULL, 0.00, '', '2019-04-27 21:30:31', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (8, '327893', 'Reloj Rolex', 'Rolex 3489', 324, 288, 'Reloj Heopppp', 38, 537, 340.00, 420.80, 8, 20, '539', '2019-05-13', NULL, 0.00, '', '2019-05-13 20:01:23', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (9, '345345345', 'Arroz Faisan', '', 290, 287, 'sdfaaaaaaaaaa', 65, 536, 500.00, 780.99, 8, 60, '539', '2019-05-31', NULL, 0.00, '', '2019-05-13 20:42:13', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (12, '238978', 'Camisa', 'Mssss', 319, 287, 'Camisa Adida', 285, 537, 9.00, 45.60, 8, 90, '539', '2019-05-17', NULL, 0.00, '', '2019-05-17 01:14:29', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (13, '389389', 'Silla Ejecutiva', 'Freego', 324, 287, 'Silla Ejecutiva', 76, 536, 3000.00, 3200.00, 8, 4, '539', '2019-05-17', NULL, 0.00, '', '2019-05-17 01:19:51', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (16, '23423', 'wqad', '', 290, 287, '', 0, 537, 45.00, 67.00, 8, 56, '539', '2019-05-18', NULL, 0.00, '', '2019-05-18 20:40:20', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (17, '23432', 'Jabon', '', 320, 287, 'sddaasdas dasjdsa djasd sajd askdjas', 38, 536, 15.00, 25.00, 8, 345, '539', '2019-07-25', NULL, 0.00, '', '2019-07-25 01:54:54', NULL, 558);
+INSERT INTO `tb06_productos` VALUES (18, '873498', 'nuevo producto', 'sadsad', 291, 287, 'aasdadasdas', 54, 536, 56.00, 78.00, 8, 78, '539', '2019-09-14', NULL, 0.00, '', '2019-09-14 11:43:52', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tb07_listaproductostemp
@@ -659,21 +701,28 @@ INSERT INTO `tb06_productos` VALUES (16, '23423', 'wqad', '', 290, 287, '', 0, 5
 DROP TABLE IF EXISTS `tb07_listaproductostemp`;
 CREATE TABLE `tb07_listaproductostemp`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad` int(11) NULL DEFAULT NULL,
-  `codproducto` int(11) NULL DEFAULT NULL,
-  `preciocompra` decimal(18, 2) NULL DEFAULT NULL,
-  `precioventa` decimal(18, 2) NULL DEFAULT NULL,
-  `estado` int(11) NULL DEFAULT 8,
-  `codacceso` int(11) NULL DEFAULT NULL,
-  `dtmingreso` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+  `incantidad` int(11) NOT NULL,
+  `codproducto` int(11) NOT NULL,
+  `inmoneda` int(3) NOT NULL,
+  `incostoprod` decimal(18, 2) NOT NULL,
+  `inconversioncosto` decimal(18, 2) NOT NULL,
+  `insubtotal` decimal(18, 2) NOT NULL,
+  `inexonerado` int(3) NOT NULL,
+  `indescuento` decimal(18, 2) NOT NULL,
+  `inimpuesto` decimal(18, 2) NOT NULL,
+  `intotal` decimal(18, 2) NOT NULL,
+  `codacceso` int(11) NOT NULL,
+  `dtmingreso` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idxtempprod`(`incantidad`, `codproducto`, `incostoprod`, `inconversioncosto`, `codacceso`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb07_listaproductostemp
 -- ----------------------------
-INSERT INTO `tb07_listaproductostemp` VALUES (19, 3, 5, 123.00, 0.00, 8, 9, '2019-05-26 20:06:02');
-INSERT INTO `tb07_listaproductostemp` VALUES (24, 1, 16, 45.00, 0.00, 8, 9, '2019-05-26 22:55:00');
+INSERT INTO `tb07_listaproductostemp` VALUES (2, 2, 9, 536, 500.00, 500.00, 1000.00, 558, 0.00, 150.00, 1150.00, 9, '2019-09-08 17:12:09');
+INSERT INTO `tb07_listaproductostemp` VALUES (3, 3, 12, 537, 9.00, 300.90, 902.70, 558, 0.00, 135.41, 1038.11, 9, '2019-09-08 17:12:10');
+INSERT INTO `tb07_listaproductostemp` VALUES (4, 1, 17, 536, 15.00, 15.00, 15.00, 558, 0.00, 2.25, 17.25, 9, '2019-09-08 17:12:12');
 
 -- ----------------------------
 -- Table structure for tb07_tipocambio
@@ -686,42 +735,41 @@ CREATE TABLE `tb07_tipocambio`  (
   `fecha` date NOT NULL,
   `idacceso` int(2) NOT NULL COMMENT 'identificacion del acceso con el que entro a la aplicacion',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb07_tipocambio
 -- ----------------------------
-INSERT INTO `tb07_tipocambio` VALUES (1, 32.8576, 0.0000, '2019-05-01', 9);
-INSERT INTO `tb07_tipocambio` VALUES (2, 32.8620, 0.0000, '2019-05-02', 9);
-INSERT INTO `tb07_tipocambio` VALUES (3, 32.8664, 0.0000, '2019-05-03', 9);
-INSERT INTO `tb07_tipocambio` VALUES (4, 32.8708, 0.0000, '2019-05-04', 9);
-INSERT INTO `tb07_tipocambio` VALUES (5, 32.8752, 0.0000, '2019-05-05', 9);
-INSERT INTO `tb07_tipocambio` VALUES (6, 32.8796, 0.0000, '2019-05-06', 9);
-INSERT INTO `tb07_tipocambio` VALUES (7, 32.8840, 0.0000, '2019-05-07', 9);
-INSERT INTO `tb07_tipocambio` VALUES (8, 32.8884, 0.0000, '2019-05-08', 9);
-INSERT INTO `tb07_tipocambio` VALUES (9, 32.8928, 0.0000, '2019-05-09', 9);
-INSERT INTO `tb07_tipocambio` VALUES (10, 32.8972, 0.0000, '2019-05-10', 9);
-INSERT INTO `tb07_tipocambio` VALUES (11, 32.9016, 0.0000, '2019-05-11', 9);
-INSERT INTO `tb07_tipocambio` VALUES (12, 32.9060, 0.0000, '2019-05-12', 9);
-INSERT INTO `tb07_tipocambio` VALUES (13, 32.9104, 0.0000, '2019-05-13', 9);
-INSERT INTO `tb07_tipocambio` VALUES (14, 32.9148, 0.0000, '2019-05-14', 9);
-INSERT INTO `tb07_tipocambio` VALUES (15, 32.9192, 0.0000, '2019-05-15', 9);
-INSERT INTO `tb07_tipocambio` VALUES (16, 32.9236, 0.0000, '2019-05-16', 9);
-INSERT INTO `tb07_tipocambio` VALUES (17, 32.9280, 0.0000, '2019-05-17', 9);
-INSERT INTO `tb07_tipocambio` VALUES (18, 32.9324, 0.0000, '2019-05-18', 9);
-INSERT INTO `tb07_tipocambio` VALUES (19, 32.9368, 0.0000, '2019-05-19', 9);
-INSERT INTO `tb07_tipocambio` VALUES (20, 32.9412, 0.0000, '2019-05-20', 9);
-INSERT INTO `tb07_tipocambio` VALUES (21, 32.9456, 0.0000, '2019-05-21', 9);
-INSERT INTO `tb07_tipocambio` VALUES (22, 32.9500, 0.0000, '2019-05-22', 9);
-INSERT INTO `tb07_tipocambio` VALUES (23, 32.9544, 0.0000, '2019-05-23', 9);
-INSERT INTO `tb07_tipocambio` VALUES (24, 32.9588, 0.0000, '2019-05-24', 9);
-INSERT INTO `tb07_tipocambio` VALUES (25, 32.9632, 0.0000, '2019-05-25', 9);
-INSERT INTO `tb07_tipocambio` VALUES (26, 32.9676, 0.0000, '2019-05-26', 9);
-INSERT INTO `tb07_tipocambio` VALUES (27, 32.9720, 0.0000, '2019-05-27', 9);
-INSERT INTO `tb07_tipocambio` VALUES (28, 32.9764, 0.0000, '2019-05-28', 9);
-INSERT INTO `tb07_tipocambio` VALUES (29, 32.9809, 0.0000, '2019-05-29', 9);
-INSERT INTO `tb07_tipocambio` VALUES (30, 32.9853, 0.0000, '2019-05-30', 9);
-INSERT INTO `tb07_tipocambio` VALUES (31, 32.9897, 0.0000, '2019-05-31', 9);
+INSERT INTO `tb07_tipocambio` VALUES (1, 33.4023, 0.0000, '2019-09-01', 0);
+INSERT INTO `tb07_tipocambio` VALUES (2, 33.4068, 0.0000, '2019-09-02', 0);
+INSERT INTO `tb07_tipocambio` VALUES (3, 33.4113, 0.0000, '2019-09-03', 0);
+INSERT INTO `tb07_tipocambio` VALUES (4, 33.4157, 0.0000, '2019-09-04', 0);
+INSERT INTO `tb07_tipocambio` VALUES (5, 33.4202, 0.0000, '2019-09-05', 0);
+INSERT INTO `tb07_tipocambio` VALUES (6, 33.4247, 0.0000, '2019-09-06', 0);
+INSERT INTO `tb07_tipocambio` VALUES (7, 33.4291, 0.0000, '2019-09-07', 0);
+INSERT INTO `tb07_tipocambio` VALUES (8, 33.4336, 0.0000, '2019-09-08', 0);
+INSERT INTO `tb07_tipocambio` VALUES (9, 33.4381, 0.0000, '2019-09-09', 0);
+INSERT INTO `tb07_tipocambio` VALUES (10, 33.4426, 0.0000, '2019-09-10', 0);
+INSERT INTO `tb07_tipocambio` VALUES (11, 33.4470, 0.0000, '2019-09-11', 0);
+INSERT INTO `tb07_tipocambio` VALUES (12, 33.4515, 0.0000, '2019-09-12', 0);
+INSERT INTO `tb07_tipocambio` VALUES (13, 33.4560, 0.0000, '2019-09-13', 0);
+INSERT INTO `tb07_tipocambio` VALUES (14, 33.4604, 0.0000, '2019-09-14', 0);
+INSERT INTO `tb07_tipocambio` VALUES (15, 33.4649, 0.0000, '2019-09-15', 0);
+INSERT INTO `tb07_tipocambio` VALUES (16, 33.4694, 0.0000, '2019-09-16', 0);
+INSERT INTO `tb07_tipocambio` VALUES (17, 33.4739, 0.0000, '2019-09-17', 0);
+INSERT INTO `tb07_tipocambio` VALUES (18, 33.4783, 0.0000, '2019-09-18', 0);
+INSERT INTO `tb07_tipocambio` VALUES (19, 33.4828, 0.0000, '2019-09-19', 0);
+INSERT INTO `tb07_tipocambio` VALUES (20, 33.4873, 0.0000, '2019-09-20', 0);
+INSERT INTO `tb07_tipocambio` VALUES (21, 33.4918, 0.0000, '2019-09-21', 0);
+INSERT INTO `tb07_tipocambio` VALUES (22, 33.4962, 0.0000, '2019-09-22', 0);
+INSERT INTO `tb07_tipocambio` VALUES (23, 33.5007, 0.0000, '2019-09-23', 0);
+INSERT INTO `tb07_tipocambio` VALUES (24, 33.5052, 0.0000, '2019-09-24', 0);
+INSERT INTO `tb07_tipocambio` VALUES (25, 33.5097, 0.0000, '2019-09-25', 0);
+INSERT INTO `tb07_tipocambio` VALUES (26, 33.5142, 0.0000, '2019-09-26', 0);
+INSERT INTO `tb07_tipocambio` VALUES (27, 33.5186, 0.0000, '2019-09-27', 0);
+INSERT INTO `tb07_tipocambio` VALUES (28, 33.5231, 0.0000, '2019-09-28', 0);
+INSERT INTO `tb07_tipocambio` VALUES (29, 33.5276, 0.0000, '2019-09-29', 0);
+INSERT INTO `tb07_tipocambio` VALUES (30, 33.5321, 0.0000, '2019-09-30', 0);
 
 -- ----------------------------
 -- Table structure for tb08_cliente
@@ -754,7 +802,7 @@ CREATE TABLE `tb08_cliente`  (
 -- Records of tb08_cliente
 -- ----------------------------
 INSERT INTO `tb08_cliente` VALUES (3, 'Erwin Vargas', 527, '001-260696-0032B', 2, 'erwin@gmail.com', 89897878, 88886767, 8, 'Antony SA', '097278346178367T', 'antony.com', 89897878, 'antony@gmail.com', 452, 'Managua', 'Del sombrero memorial sandino 1c, al lago', NULL, '2019-05-04 14:29:54');
-INSERT INTO `tb08_cliente` VALUES (5, 'Erwin Vargas', 528, '001-260696-0032B', 2, 'erwin@gmail.com', 28796767, 88776677, 8, 'Antony SA', '097278346178367T', '', 0, '', 0, '', '', NULL, '2019-05-04 15:23:26');
+INSERT INTO `tb08_cliente` VALUES (5, 'Erwin Vargas Rodriguez', 528, '001-260696-0032B', 2, 'erwin@gmail.com', 28796767, 88776677, 8, 'Ave Inc', '097276666178367T', 'ave.com', 78886767, '', 448, '', 'dsfsdfsdfsdfsd', NULL, '2019-05-04 15:23:26');
 
 -- ----------------------------
 -- Table structure for tb09_compra
@@ -762,28 +810,80 @@ INSERT INTO `tb08_cliente` VALUES (5, 'Erwin Vargas', 528, '001-260696-0032B', 2
 DROP TABLE IF EXISTS `tb09_compra`;
 CREATE TABLE `tb09_compra`  (
   `idcomp` int(11) NOT NULL AUTO_INCREMENT,
-  `codproveedor` int(5) NULL DEFAULT NULL,
-  `tipocomp` int(11) NULL DEFAULT NULL,
-  `seriecomp` int(5) NOT NULL,
-  `tipocamb` decimal(18, 4) NULL DEFAULT NULL,
-  `strdetalle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tipocambio` decimal(18, 4) NULL DEFAULT NULL,
+  `tipocompra` int(11) NULL DEFAULT NULL,
+  `formapago` int(5) NOT NULL,
+  `pagacon` decimal(18, 2) NULL DEFAULT NULL,
+  `cambiopago` decimal(18, 2) NULL DEFAULT NULL,
+  `strdetalle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `subtotal` decimal(18, 2) NULL DEFAULT NULL,
+  `descuento` decimal(18, 2) NULL DEFAULT NULL,
   `iva` decimal(18, 2) NULL DEFAULT NULL,
-  `submoncord` decimal(18, 2) NULL DEFAULT NULL,
-  `montodolar` decimal(18, 2) NULL DEFAULT NULL,
-  `montomoneda` decimal(18, 2) NULL DEFAULT NULL,
+  `totaldolar` decimal(18, 2) NULL DEFAULT NULL,
+  `totalnacional` decimal(18, 2) NULL DEFAULT NULL,
+  `codproveedor` int(5) NULL DEFAULT NULL,
   `dtmfactura` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `idestado` int(3) NOT NULL DEFAULT 8,
+  `estado` int(3) NOT NULL DEFAULT 8,
   `codacceso` int(4) NULL DEFAULT NULL,
   PRIMARY KEY (`idcomp`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb09_compra
 -- ----------------------------
-INSERT INTO `tb09_compra` VALUES (1, 5, 530, 23432423, 32.9456, 'ssdfds sdffsdfsdfs', 8.20, 123.00, 3.98, 131.20, '2019-05-21 20:16:42', 8, 9);
-INSERT INTO `tb09_compra` VALUES (2, 5, 530, 3454353, 32.9456, 'eeeee eeeeeeeeee', 41.53, 623.00, 20.17, 664.53, '2019-05-21 21:08:13', 8, 9);
-INSERT INTO `tb09_compra` VALUES (3, 5, 530, 33333, 32.9500, 'ninguno por el momento', 92.20, 1383.00, 44.77, 1475.20, '2019-05-22 01:39:08', 8, 9);
-INSERT INTO `tb09_compra` VALUES (4, 5, 530, 4444444, 32.9500, '', 1711.00, 25665.00, 830.83, 27376.00, '2019-05-22 01:55:51', 8, 9);
+INSERT INTO `tb09_compra` VALUES (1, 33.4247, 547, 551, 700.00, 56.05, 'asdasdasd sa dsadsa', NULL, 5.00, 120.00, 643.95, 643.95, 5, '2019-09-06 21:07:14', 8, 9);
+INSERT INTO `tb09_compra` VALUES (2, 33.4247, 547, 551, 700.00, 56.05, 'asdasdasd sa dsadsa', NULL, 5.00, 120.00, 643.95, 643.95, 5, '2019-09-06 21:09:03', 8, 9);
+INSERT INTO `tb09_compra` VALUES (3, 33.4291, 547, 551, 10300.00, 62.03, '\'asdsadasda\'', NULL, NULL, 1335.39, 10237.97, 10237.97, 5, '2019-09-07 20:31:27', 8, 9);
+INSERT INTO `tb09_compra` VALUES (4, 33.4291, 547, 551, 10300.00, 62.03, '\'asdsadasda\'', NULL, NULL, 1335.39, 10237.97, 10237.97, 5, '2019-09-07 22:26:20', 8, 9);
+INSERT INTO `tb09_compra` VALUES (5, 33.4291, 547, 551, 10300.00, 62.03, '\'asdsadasda\'', NULL, NULL, 1335.39, 10237.97, 10237.97, 5, '2019-09-07 22:32:58', 8, 9);
+INSERT INTO `tb09_compra` VALUES (6, 33.4291, 547, 551, 10300.00, 62.03, '\'asdsadasda\'', NULL, NULL, 1335.39, 10237.97, 10237.97, 5, '2019-09-07 22:33:39', 8, 9);
+INSERT INTO `tb09_compra` VALUES (7, 33.4336, 547, 551, 10300.00, 62.03, '\'asdsadasda\'', NULL, NULL, 1335.39, 10237.97, 10237.97, 5, '2019-09-08 13:12:59', 8, 9);
+INSERT INTO `tb09_compra` VALUES (8, 33.4336, 547, 551, 2500.00, 294.64, '\'asdasdas\'', NULL, NULL, 287.66, 2205.36, 2205.36, 5, '2019-09-08 17:41:36', 8, 9);
+INSERT INTO `tb09_compra` VALUES (9, 33.4336, 547, 551, 2500.00, 294.64, '\'sdfsdfsdfs\'', NULL, NULL, 287.66, 2205.36, 2205.36, 5, '2019-09-08 17:47:25', 8, 9);
+INSERT INTO `tb09_compra` VALUES (10, 33.4336, 547, 551, 2500.00, 294.64, '\'asdasdasdsad\'', NULL, NULL, 287.66, 2205.36, 2205.36, 5, '2019-09-08 17:48:18', 8, 9);
+INSERT INTO `tb09_compra` VALUES (11, 33.4336, 547, 551, 2500.00, 294.64, '\'asdsada\'', NULL, NULL, 287.66, 2205.36, 2205.36, 5, '2019-09-08 17:58:07', 8, 9);
+INSERT INTO `tb09_compra` VALUES (12, 33.4336, 547, 551, 2300.00, 94.64, '\'El pago se realizo en efectivo.\'', NULL, NULL, 287.66, 2205.36, 2205.36, 5, '2019-09-08 18:13:12', 8, 9);
+INSERT INTO `tb09_compra` VALUES (13, 33.4336, 547, 551, 2500.00, 294.64, '\'wwwwwwwww\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 18:59:35', 8, 9);
+INSERT INTO `tb09_compra` VALUES (14, 33.4336, 547, 551, 2500.00, 294.64, '\'asdasdasdasdsada\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 19:40:40', 8, 9);
+INSERT INTO `tb09_compra` VALUES (15, 33.4336, 547, 551, 2500.00, 294.64, '\'asdasdasda\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 19:47:51', 8, 9);
+INSERT INTO `tb09_compra` VALUES (16, 33.4336, 547, 551, 2500.00, 294.64, '\'asdasdasdsa\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:04:20', 8, 9);
+INSERT INTO `tb09_compra` VALUES (17, 33.4336, 547, 551, 2500.00, 294.64, '\'ksjdkljslkjflds\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:06:27', 8, 9);
+INSERT INTO `tb09_compra` VALUES (18, 33.4336, 547, 551, 2400.00, 194.64, '\'sjlkjdjldks\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:07:24', 8, 9);
+INSERT INTO `tb09_compra` VALUES (19, 33.4336, 547, 551, 2300.00, 94.64, '\'dsdsdsdsd\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:12:57', 8, 9);
+INSERT INTO `tb09_compra` VALUES (20, 33.4336, 547, 551, 2330.00, 124.64, '\'sdsdsdsd\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:26:38', 8, 9);
+INSERT INTO `tb09_compra` VALUES (21, 33.4336, 547, 551, 2300.00, 94.64, '\'aklñadksñaldkals\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 20:27:39', 8, 9);
+INSERT INTO `tb09_compra` VALUES (22, 33.4336, 549, 551, 2300.00, 94.64, '\'adsadsa\'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:28:45', 8, 9);
+INSERT INTO `tb09_compra` VALUES (23, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:30:17', 8, 9);
+INSERT INTO `tb09_compra` VALUES (24, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:31:08', 8, 9);
+INSERT INTO `tb09_compra` VALUES (25, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:32:40', 8, 9);
+INSERT INTO `tb09_compra` VALUES (26, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:33:48', 8, 9);
+INSERT INTO `tb09_compra` VALUES (27, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 21:35:15', 8, 9);
+INSERT INTO `tb09_compra` VALUES (28, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 22:44:23', 8, 9);
+INSERT INTO `tb09_compra` VALUES (29, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 23:28:14', 8, 9);
+INSERT INTO `tb09_compra` VALUES (30, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 23:33:32', 8, 9);
+INSERT INTO `tb09_compra` VALUES (31, 33.4336, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 23:36:19', 8, 9);
+INSERT INTO `tb09_compra` VALUES (32, 33.4336, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.96, 2205.36, 5, '2019-09-08 23:46:53', 8, 9);
+INSERT INTO `tb09_compra` VALUES (33, 33.4381, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 21:39:22', 8, 9);
+INSERT INTO `tb09_compra` VALUES (34, 33.4381, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 22:02:58', 8, 9);
+INSERT INTO `tb09_compra` VALUES (35, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 22:06:17', 8, 9);
+INSERT INTO `tb09_compra` VALUES (36, 33.4381, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:29:55', 8, 9);
+INSERT INTO `tb09_compra` VALUES (37, 33.4381, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:31:34', 8, 9);
+INSERT INTO `tb09_compra` VALUES (38, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:32:27', 8, 9);
+INSERT INTO `tb09_compra` VALUES (39, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:33:52', 8, 9);
+INSERT INTO `tb09_compra` VALUES (40, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:39:17', 8, 9);
+INSERT INTO `tb09_compra` VALUES (41, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:49:04', 8, 9);
+INSERT INTO `tb09_compra` VALUES (42, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:50:44', 8, 9);
+INSERT INTO `tb09_compra` VALUES (43, 33.4381, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:51:32', 8, 9);
+INSERT INTO `tb09_compra` VALUES (44, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:54:43', 8, 9);
+INSERT INTO `tb09_compra` VALUES (45, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:55:32', 8, 9);
+INSERT INTO `tb09_compra` VALUES (46, 33.4381, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.95, 2205.36, 5, '2019-09-09 23:56:58', 8, 9);
+INSERT INTO `tb09_compra` VALUES (47, 33.4426, 547, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.94, 2205.36, 5, '2019-09-10 00:30:40', 8, 9);
+INSERT INTO `tb09_compra` VALUES (48, 33.4426, 549, 551, 2300.00, 94.64, '\' \'', NULL, NULL, 287.66, 65.94, 2205.36, 5, '2019-09-10 01:05:19', 8, 9);
+INSERT INTO `tb09_compra` VALUES (49, 33.4426, 547, 551, 3000.00, 794.64, '\' \'', NULL, NULL, 287.66, 65.94, 2205.36, 5, '2019-09-10 01:08:14', 8, 9);
+INSERT INTO `tb09_compra` VALUES (50, 33.4560, 547, 551, 9000.00, 6794.64, '', NULL, NULL, 287.66, 65.92, 2205.36, 5, '2019-09-13 21:39:57', 8, 9);
+INSERT INTO `tb09_compra` VALUES (51, 33.4560, 547, 551, 3000.00, 794.64, 'NULL', NULL, NULL, 287.66, 65.92, 2205.36, 5, '2019-09-13 22:05:23', 8, 9);
+INSERT INTO `tb09_compra` VALUES (52, 33.4560, 547, 554, 3400.00, 1194.64, 'NULL', 1917.70, NULL, 287.66, 65.92, 2205.36, 5, '2019-09-13 22:59:44', 8, 9);
+INSERT INTO `tb09_compra` VALUES (53, 33.4560, 548, 551, 2300.00, 94.64, 'NULL', 1917.70, NULL, 287.66, 65.92, 2205.36, 5, '2019-09-13 23:52:36', 8, 9);
 
 -- ----------------------------
 -- Table structure for tb10_detacompra
@@ -791,31 +891,47 @@ INSERT INTO `tb09_compra` VALUES (4, 5, 530, 4444444, 32.9500, '', 1711.00, 2566
 DROP TABLE IF EXISTS `tb10_detacompra`;
 CREATE TABLE `tb10_detacompra`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codproducto` int(11) NULL DEFAULT NULL,
-  `cantd` int(20) NULL DEFAULT NULL,
+  `incantidad` int(20) NULL DEFAULT NULL,
+  `idrecibo` int(11) NULL DEFAULT NULL,
   `tipocambio` decimal(18, 2) NULL DEFAULT NULL,
-  `idmoneda` int(3) NULL DEFAULT NULL,
-  `montodolar` decimal(18, 2) NULL DEFAULT NULL,
-  `montomoneda` decimal(18, 2) NULL DEFAULT NULL,
-  `preciomoneda` decimal(18, 2) NULL DEFAULT NULL,
-  `presubtotal` decimal(18, 2) NULL DEFAULT NULL,
-  `vmiva` decimal(18, 2) NULL DEFAULT NULL,
-  `vmptotal` decimal(18, 2) NULL DEFAULT NULL,
-  `dtmpagado` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `codrecibo` int(11) NULL DEFAULT NULL,
+  `codproducto` int(11) NULL DEFAULT NULL,
+  `inmoneda` int(3) NULL DEFAULT NULL,
+  `incostoprod` decimal(18, 2) NULL DEFAULT NULL,
+  `inconversioncosto` decimal(18, 2) NULL DEFAULT NULL,
+  `inexonerado` int(3) NULL DEFAULT NULL,
+  `insubtotal` decimal(18, 2) NULL DEFAULT NULL,
+  `indescuento` int(11) NULL DEFAULT NULL,
+  `inimpuesto` decimal(18, 2) NULL DEFAULT NULL,
+  `intotal` decimal(18, 2) NULL DEFAULT NULL,
+  `dtmingreso` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `codacceso` int(5) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb10_detacompra
 -- ----------------------------
-INSERT INTO `tb10_detacompra` VALUES (1, 5, 1, 32.95, 536, 3.73, 123.00, 123.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:39:08', 3, 9);
-INSERT INTO `tb10_detacompra` VALUES (2, 9, 1, 32.95, 536, 15.17, 500.00, 500.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:39:08', 3, 9);
-INSERT INTO `tb10_detacompra` VALUES (3, 7, 4, 32.95, 537, 190.00, 6260.50, 25042.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:39:08', 3, 9);
-INSERT INTO `tb10_detacompra` VALUES (4, 5, 1, 32.95, 536, 3.73, 123.00, 123.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:55:51', 4, 9);
-INSERT INTO `tb10_detacompra` VALUES (5, 9, 1, 32.95, 536, 15.17, 500.00, 500.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:55:51', 4, 9);
-INSERT INTO `tb10_detacompra` VALUES (6, 7, 4, 32.95, 537, 190.00, 6260.50, 25042.00, 25665.00, 1711.00, 27376.00, '2019-05-22 01:55:51', 4, 9);
+INSERT INTO `tb10_detacompra` VALUES (1, 551, 47, 33.44, 9, 536, 500.00, 500.00, 558, 1000.00, NULL, 150.00, 2205.36, '2019-09-10 00:30:40', 9);
+INSERT INTO `tb10_detacompra` VALUES (2, 551, 47, 33.44, 12, 537, 9.00, 300.90, 558, 902.70, NULL, 135.41, 2205.36, '2019-09-10 00:30:40', 9);
+INSERT INTO `tb10_detacompra` VALUES (3, 551, 47, 33.44, 17, 536, 15.00, 15.00, 558, 15.00, NULL, 2.25, 2205.36, '2019-09-10 00:30:40', 9);
+INSERT INTO `tb10_detacompra` VALUES (4, 2, 48, 33.44, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-10 01:05:19', 9);
+INSERT INTO `tb10_detacompra` VALUES (5, 3, 48, 33.44, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-10 01:05:19', 9);
+INSERT INTO `tb10_detacompra` VALUES (6, 1, 48, 33.44, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-10 01:05:19', 9);
+INSERT INTO `tb10_detacompra` VALUES (7, 2, 49, 33.44, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-10 01:08:15', 9);
+INSERT INTO `tb10_detacompra` VALUES (8, 3, 49, 33.44, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-10 01:08:15', 9);
+INSERT INTO `tb10_detacompra` VALUES (9, 1, 49, 33.44, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-10 01:08:15', 9);
+INSERT INTO `tb10_detacompra` VALUES (10, 2, 50, 33.46, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-13 21:39:57', 9);
+INSERT INTO `tb10_detacompra` VALUES (11, 3, 50, 33.46, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-13 21:39:57', 9);
+INSERT INTO `tb10_detacompra` VALUES (12, 1, 50, 33.46, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-13 21:39:57', 9);
+INSERT INTO `tb10_detacompra` VALUES (13, 2, 51, 33.46, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-13 22:05:23', 9);
+INSERT INTO `tb10_detacompra` VALUES (14, 3, 51, 33.46, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-13 22:05:23', 9);
+INSERT INTO `tb10_detacompra` VALUES (15, 1, 51, 33.46, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-13 22:05:23', 9);
+INSERT INTO `tb10_detacompra` VALUES (16, 2, 52, 33.46, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-13 22:59:44', 9);
+INSERT INTO `tb10_detacompra` VALUES (17, 3, 52, 33.46, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-13 22:59:44', 9);
+INSERT INTO `tb10_detacompra` VALUES (18, 1, 52, 33.46, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-13 22:59:44', 9);
+INSERT INTO `tb10_detacompra` VALUES (19, 2, 53, 33.46, 9, 536, 500.00, 500.00, 558, 1000.00, 0, 150.00, 1150.00, '2019-09-13 23:52:36', 9);
+INSERT INTO `tb10_detacompra` VALUES (20, 3, 53, 33.46, 12, 537, 9.00, 300.90, 558, 902.70, 0, 135.41, 1038.11, '2019-09-13 23:52:36', 9);
+INSERT INTO `tb10_detacompra` VALUES (21, 1, 53, 33.46, 17, 536, 15.00, 15.00, 558, 15.00, 0, 2.25, 17.25, '2019-09-13 23:52:36', 9);
 
 -- ----------------------------
 -- Table structure for tb11_detafactura
@@ -841,10 +957,13 @@ CREATE TABLE `tb11_detafactura`  (
 -- View structure for vta01_productos
 -- ----------------------------
 DROP VIEW IF EXISTS `vta01_productos`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vta01_productos` AS SELECT tb6.id as cod, tb6.codigo, tb6.nombre, tb6.modelo, tb6.categoria, tb6.presentacion as codpresentacion, 
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vta01_productos` AS SELECT tb6.id as cod, tb6.codigo, tb6.nombre, tb6.modelo, tb6.categoria as codcategoria, 
+	(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.categoria ) as categoria, tb6.presentacion as codpresentacion, 
 	(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.presentacion ) as presentacion,
 	tb6.descripcion, tb6.codfabricante, (SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.codfabricante ) as fabricante,
-	tb6.tipomoneda as codmoneda, (SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.tipomoneda ) as moneda, tb6.costo, tb6.precioventa, tb6.estado, tb6.stock, tb6.ubicacion, DATE_FORMAT(tb6.fechacaduca, "%Y-%m-%d") as fechacaduca,
+	tb6.tipomoneda as codmoneda, (SELECT tb4.strcontent FROM tb04_catalogo tb4 WHERE tb4.id = tb6.tipomoneda ) as simbolomoneda,
+	(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.tipomoneda ) as moneda, tb6.costo, tb6.precioventa, tb6.estado as codestado,
+	(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.estado ) as estado,tb6.stock, tb6.ubicacion as codubicacion, (SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb6.ubicacion ) as ubicacion, DATE_FORMAT(tb6.fechacaduca, "%Y-%m-%d") as fechacaduca,
 	tb6.fechacompra
 FROM tb06_productos tb6
 ORDER BY tb6.id DESC ;
@@ -882,7 +1001,7 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 	BEGIN
 		-- Consulta del Fabricante (IF=1)
 		SELECT id as cod, strdescrip as strnombre, fecha, estado
-		FROM tb04_catalogo WHERE idtabla = 25;
+		FROM tb04_catalogo WHERE idtabla = 25 ORDER BY id DESC;
 	END;
 	END IF;
 	
@@ -944,7 +1063,7 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 		SELECT id as cod, strdescrip as strnombre, 6
 		FROM tb04_catalogo WHERE idtabla = 538 AND estado = 8;
 
-		SELECT idcod as id, strdescrip, idtabla as fil FROM datos ORDER BY id,strdescrip;
+		SELECT idcod as `value`, strdescrip as label, idtabla as fil FROM datos ORDER BY id,strdescrip;
 		
 	END;
 	END IF;
@@ -999,8 +1118,6 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 		SELECT id as cod, nombre as strnombre, 3
 		FROM tb06_productos WHERE estado = 8 ORDER BY id;
 		
-		
-		
 		SELECT idcod as id, strdescrip, idtabla as fil FROM datos ORDER BY id,strdescrip;
 		
 	END;
@@ -1009,18 +1126,38 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 	IF opc = 7 THEN
 	BEGIN
 		
+		-- Lista de categoria de los productos
 		INSERT INTO alimeproducto(idcod, strnombre, strabrevia, strcosto, incosto, strimagen, idtabla)
 		SELECT DISTINCT t4.id as cod, t4.strdescrip as strnombre, t4.strcontent,0,0,0,1
 		FROM tb04_catalogo t4 INNER JOIN tb06_productos t6 ON t4.id = t6.categoria
 		WHERE t4.idtabla = 289 AND t4.estado = 8;
-		
+	
+		-- Lista de los productos con su precio de compra y todo.
 		INSERT INTO alimeproducto(idcod, strnombre, strabrevia, strcosto, incosto, strimagen, idtabla)
 		SELECT t6.id as cod, t6.nombre as strnombre, (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.id = t6.categoria) as abrecate,
 		CONCAT_WS(' ',(SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.id = t6.tipomoneda), t6.costo) as strcosto, t6.costo, 
 		CASE WHEN t6.imagen!='' THEN t6.imagen ELSE 'nodisponible.png' END as imagen, 2
 		FROM tb06_productos t6 WHERE t6.estado = 8 ORDER BY t6.id;
 		
-		SELECT idcod as id, strnombre, strabrevia, strcosto, incosto, strimagen, idtabla as fil FROM alimeproducto ORDER BY idtabla, strnombre;
+		-- Lista de los proveedores
+		INSERT INTO alimeproducto(idcod, strnombre, idtabla)
+		SELECT id as cod, nombre as strnombre, 3 FROM tb08_cliente WHERE tipoconta = 528 AND estado = 8 ORDER BY id;
+
+		-- Lista de tipos de comprobantes
+		INSERT INTO alimeproducto(idcod, strnombre, idtabla)
+		SELECT id as cod, strdescrip as strnombre, 4 FROM tb04_catalogo WHERE idtabla = 529 AND estado = 8 ORDER BY id;
+		
+		INSERT INTO alimeproducto(idcod,strnombre,idtabla) -- Tipo de CCompra
+		SELECT id as cod, strdescrip as strnombre, 5
+		FROM tb04_catalogo WHERE idtabla = 546 AND estado = 8 ORDER BY id;
+		
+		INSERT INTO alimeproducto(idcod,strnombre,idtabla) -- Forma de Pago
+		SELECT id as cod, strdescrip as strnombre, 6
+		FROM tb04_catalogo WHERE idtabla = 550 AND estado = 8 ORDER BY id;
+
+
+		SELECT idcod as id, strnombre as strdescrip, strabrevia, strcosto, incosto, strimagen, idtabla as fil
+		FROM alimeproducto ORDER BY idtabla, strnombre;
 		
 	END;
 	END IF;
@@ -1040,9 +1177,9 @@ BEGIN
 	
 	IF opc = 1 THEN
 	BEGIN
-		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.categoria, v01.codpresentacion, v01.presentacion,
-			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda,
-			v01.costo as precompra, v01.precioventa as preventa, v01.estado, v01.stock as existencias, v01.ubicacion,
+		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.codcategoria, v01.categoria, v01.codpresentacion, v01.presentacion,
+			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda, v01.simbolomoneda,
+			v01.costo as precompra, v01.precioventa as preventa, v01.codestado, v01.estado, v01.stock as existencias, v01.codubicacion, v01.ubicacion,
 			v01.fechacaduca
 		FROM vta01_productos v01;
 	END;
@@ -1078,9 +1215,9 @@ BEGIN
 			
 		END IF;
 		
-		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.categoria, v01.codpresentacion, v01.presentacion,
-			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda,
-			v01.costo as precompra, v01.precioventa as preventa, v01.estado, v01.stock as existencias, v01.ubicacion,
+		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.codcategoria, v01.categoria, v01.codpresentacion, v01.presentacion,
+			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda, v01.simbolomoneda,
+			v01.costo as precompra, v01.precioventa as preventa, v01.codestado, v01.estado, v01.stock as existencias, v01.codubicacion, v01.ubicacion,
 			v01.fechacaduca
 		FROM vta01_productos v01;
 		
@@ -1091,9 +1228,9 @@ BEGIN
 	BEGIN
 		DELETE FROM tb06_productos WHERE id = spcod;
 		
-		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.categoria, v01.codpresentacion, v01.presentacion,
-			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda,
-			v01.costo as precompra, v01.precioventa as preventa, v01.estado, v01.stock as existencias, v01.ubicacion,
+		SELECT v01.cod, v01.codigo, v01.nombre, v01.modelo, v01.codcategoria, v01.categoria, v01.codpresentacion, v01.presentacion,
+			v01.descripcion as strdescrip, v01.codfabricante as codfabi, v01.fabricante, v01.codmoneda, v01.moneda, v01.simbolomoneda,
+			v01.costo as precompra, v01.precioventa as preventa, v01.codestado, v01.estado, v01.stock as existencias, v01.codubicacion, v01.ubicacion,
 			v01.fechacaduca
 		FROM vta01_productos v01;
 		
@@ -1121,11 +1258,11 @@ BEGIN
 	
 	IF opc = 1 THEN -- Lista de los clientes
 	BEGIN
-		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil,
+		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil, tb8.tipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.tipoconta) As strtipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.genero) As strgenero,
 		tb8.empruc, tb8.empnombre, tb8.estado, tb8.sitioweb, tb8.emptelefono, tb8.empemail, tb8.pais, tb8.strdepartamento, tb8.direccion
-		FROM tb08_cliente tb8;
+		FROM tb08_cliente tb8 ORDER BY tb8.tipoconta, tb8.id Desc;
 	END;
 	END IF;
 	
@@ -1161,11 +1298,11 @@ BEGIN
 		END;
 		END IF;
 		
-		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil,
+		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil, tb8.tipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.tipoconta) As strtipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.genero) As strgenero,
 		tb8.empruc, tb8.empnombre, tb8.estado, tb8.sitioweb, tb8.emptelefono, tb8.empemail, tb8.pais, tb8.strdepartamento, tb8.direccion
-		FROM tb08_cliente tb8;
+		FROM tb08_cliente tb8 ORDER BY tb8.tipoconta, tb8.id Desc;
 		
 	END IF;
 	
@@ -1173,11 +1310,11 @@ BEGIN
 	BEGIN
 		DELETE FROM tb08_cliente WHERE id = coding;
 		
-		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil,
+		SELECT tb8.id, tb8.nombre, tb8.tipoconta, tb8.ndocumento, tb8.genero, tb8.email, tb8.telefono, tb8.movil, tb8.tipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.tipoconta) As strtipoconta,
 		(SELECT tb4.strdescrip FROM tb04_catalogo tb4 WHERE tb4.id = tb8.genero) As strgenero,
 		tb8.empruc, tb8.empnombre, tb8.estado, tb8.sitioweb, tb8.emptelefono, tb8.empemail, tb8.pais, tb8.strdepartamento, tb8.direccion
-		FROM tb08_cliente tb8;
+		FROM tb08_cliente tb8 ORDER BY tb8.tipoconta, tb8.id Desc;
 	END;
 	END IF;
 	
@@ -1250,7 +1387,8 @@ delimiter ;
 DROP PROCEDURE IF EXISTS `spfactura_03compras`;
 delimiter ;;
 CREATE PROCEDURE `spfactura_03compras`(in opc int, in incodprod int, in incantidad int, in inprecompra float(18,2),
-		 in inpreventa float(18,2), in inacceso int, in tipocomprob int, in seriecomprob int, in strdeta varchar(255), in subtotal float(18,2),		 in iniva float(18,2), in intotal float(18,2))
+		 in inpreventa float(18,2), in inacceso int, in num01 int, in num02 int, in strdeta varchar(255), in spsubtotal float(18,2),
+		 in indescuento float(18,2), in iniva float(18,2), in intotal float(18,2))
 BEGIN
 
 	SET @tipcam = (SELECT tipoCambio FROM tb07_tipocambio WHERE (fecha=DATE_FORMAT(NOW(),  '%Y-%m-%d')));
@@ -1259,78 +1397,100 @@ BEGIN
 	IF opc = 1 THEN
 		BEGIN
 		
-			SET @subtotal = (SELECT SUM((tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END))
-																						FROM tb07_listaproductostemp tb7 
-																						INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
-																						WHERE tb7.codacceso = inacceso);
-																						
-	SET @iva = (SELECT strdescrip FROM tb04_catalogo WHERE id = 534 AND estado = 8);
-	SET @ivasub = @subtotal / @iva;
-	SET @totalcord = @subtotal + @ivasub;
-	
-			SELECT tb7.id,
-			(SELECT tb6.codigo FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as codigo,
-			 tb7.cantidad as cantd,
-			(SELECT tb6.nombre FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as strdescrip,
-			tb7.preciocompra as preunit, tb7.precioventa as pretotal, 
-			(tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END) as precio, 
-			@subtotal as subtotal,
-			ROUND(@ivasub, 2) as iva,
-			ROUND(@totalcord, 2) as totalcordoba, tb6.tipomoneda as mondol,
-			(SELECT tb4.strcontent	FROM tb04_catalogo tb4 WHERE tb4.id=tb6.tipomoneda) as abremoneda
+			SELECT tb7.id, tb7.incantidad, tb7.codproducto, tb6.codigo as strcodigoprod, tb6.nombre as strnombreprod, tb6.tipomoneda as inmoneda,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.id = tb6.tipomoneda) as abremoneda,
+						 tb6.costo as incostoprod, tb7.inconversioncosto, tb7.insubtotal, tb7.inexonerado, tb7.indescuento, tb7.inimpuesto,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.idtabla = 535 AND t4.idgrupo = 1) as strmonedaNacional,
+						 tb7.intotal, tb7.codacceso, tb7.dtmingreso,
+						 (SELECT SUM(temp7.insubtotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoSubtotal,
+						 (SELECT SUM(temp7.inimpuesto) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoImpuesto,
+						 (SELECT SUM(temp7.intotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoTotal
 			FROM tb07_listaproductostemp tb7 INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
 			WHERE tb7.codacceso = inacceso;
 			
 		END;
 	END IF;
 	
-	-- Agregando datos a Detalle de la compra
+	-- Agregando datos a la tabla temporal de la Compra, (No descuento-Default 0)
 	IF opc = 2 THEN
 		BEGIN
-			/*INSERT INTO tb10_detacompra (codproducto, cantd, preunit, pretotal) VALUES
-			(incodprod, incantidad, inprecompra, inpreventa);*/
 			
-			IF NOT EXISTS (SELECT codproducto FROM tb07_listaproductostemp WHERE codproducto = incodprod AND codacceso = inacceso) THEN
-				
-				INSERT INTO tb07_listaproductostemp (codproducto, cantidad, preciocompra, precioventa, codacceso) VALUES
-				(incodprod, incantidad, inprecompra, inpreventa, inacceso);
-				
+			SET @_conviertaCordoba = (SELECT (CASE WHEN tb6.tipomoneda=537 THEN ROUND((inprecompra*@tipcam),2) ELSE inprecompra END) 
+												 	FROM tb06_productos tb6 WHERE tb6.id = incodprod);
+													
+			SET @_inmoneda = (SELECT tipomoneda FROM tb06_productos tb6 WHERE tb6.id = incodprod);
+			SET @_inexonerado = (SELECT inexonerado FROM tb06_productos tb6 WHERE tb6.id = incodprod);
+			SET @_valorimpuesto = (SELECT strdescrip FROM tb04_catalogo WHERE idtabla = 533 AND strcontent = 1);
+			
+			SET @_subtotal = (@_conviertaCordoba * incantidad);
+			
+			IF @_inexonerado = 558 THEN -- SI NO ESTA EXONERADO
+				SET @_impuesto = (@_subtotal * (@_valorimpuesto / 100));
 			ELSE
-			
-				SET @numcant = (SELECT t7.cantidad FROM tb07_listaproductostemp t7 WHERE t7.codproducto = incodprod AND t7.codacceso = inacceso ) + 1;
-			
-				UPDATE tb07_listaproductostemp SET 
-					cantidad=@numcant,
-					preciocompra=inprecompra,
-					precioventa=inpreventa
-				WHERE (codproducto = incodprod AND codacceso = inacceso);
-				
+				SET @_impuesto = 0;
 			END IF;
 			
+			SET @_total = (@_subtotal + @_impuesto);
 			
-			
-			-- ------------------------------------------------------------------------------------
-			
-			SET @subtotal = (SELECT SUM((tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END))
-																						FROM tb07_listaproductostemp tb7 
-																						INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
-																						WHERE tb7.codacceso = inacceso);
 																						
-			SET @iva = (SELECT strdescrip FROM tb04_catalogo WHERE id = 534 AND estado = 8);
-			SET @ivasub = @subtotal / @iva;
-			SET @totalcord = @subtotal + @ivasub;
-	
-			SELECT tb7.id,
-			(SELECT tb6.codigo FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as codigo,
-			 tb7.cantidad as cantd,
-			(SELECT tb6.nombre FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as strdescrip,
-			tb7.preciocompra as preunit, tb7.precioventa as pretotal, 
-			(tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END) as precio, 
-			@subtotal as subtotal,
-			ROUND(@ivasub, 2) as iva,
-			ROUND(@totalcord, 2) as totalcordoba, 537 as mondol
+			IF NOT EXISTS (SELECT codproducto FROM tb07_listaproductostemp WHERE codproducto = incodprod AND codacceso = inacceso) THEN
+			BEGIN
+				INSERT INTO tb07_listaproductostemp (incantidad, codproducto, inmoneda, incostoprod, inconversioncosto,
+																						insubtotal, inexonerado, indescuento, inimpuesto, intotal, codacceso) VALUES
+																						
+																						(incantidad, incodprod, @_inmoneda, inprecompra, @_conviertaCordoba,
+																						 @_subtotal, @_inexonerado, 0, @_impuesto, @_total, inacceso );
+			END;
+			ELSE
+			BEGIN
+		
+				-- conteo si hay mas de un producto
+				SET @_inc_cantidad= (SELECT t7.incantidad FROM tb07_listaproductostemp t7 WHERE t7.codproducto = incodprod AND t7.codacceso = inacceso ) + 1;
+				SET @_descuento = (SELECT t7.indescuento FROM tb07_listaproductostemp t7 WHERE t7.codproducto = incodprod AND t7.codacceso = inacceso);
+				SET @_subtotal_temp = (SELECT t7.inconversioncosto FROM tb07_listaproductostemp t7 WHERE t7.codproducto = incodprod AND t7.codacceso = inacceso);
+				
+				SET @_nuevo_subtotal = (@_subtotal_temp * @_inc_cantidad);
+				
+				IF @_descuento > 0 THEN
+					SET @_valor_descuento = @_nuevo_subtotal * (@_descuento / 100);
+				ELSE
+					SET @_valor_descuento = 0;
+				END IF;				
+				
+				IF @_inexonerado = 558 THEN -- SI NO ESTA EXONERADO
+					SET @_nuevo_impuesto = (@_nuevo_subtotal - @_valor_descuento) * (@_valorimpuesto / 100);
+				ELSE
+					SET @_nuevo_impuesto = 0;
+				END IF;
+				
+				SET @_nuevo_total = (@_nuevo_subtotal + @_nuevo_impuesto);
+				
+			
+				-- se actualiza el producto con el nuevo conteo
+				UPDATE tb07_listaproductostemp SET 
+					incantidad=@_inc_cantidad,
+					incostoprod=inprecompra,
+					insubtotal=@_nuevo_subtotal,
+					indescuento=@_descuento,
+					inimpuesto=@_nuevo_impuesto,
+					intotal=@_nuevo_total
+				WHERE (codproducto = incodprod AND codacceso = inacceso);
+				
+			END;
+			END IF;
+			
+			SELECT tb7.id, tb7.incantidad, tb7.codproducto, tb6.codigo as strcodigoprod, tb6.nombre as strnombreprod, tb6.tipomoneda as inmoneda,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.id = tb6.tipomoneda) as abremoneda,
+						 tb6.costo as incostoprod, tb7.inconversioncosto, tb7.insubtotal, tb7.inexonerado, tb7.indescuento, tb7.inimpuesto,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.idtabla = 535 AND t4.idgrupo = 1) as strmonedaNacional,
+						 tb7.intotal, tb7.codacceso, tb7.dtmingreso,
+						 (SELECT SUM(temp7.insubtotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoSubtotal,
+						 (SELECT SUM(temp7.inimpuesto) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoImpuesto,
+						 (SELECT SUM(temp7.intotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoTotal
 			FROM tb07_listaproductostemp tb7 INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
 			WHERE tb7.codacceso = inacceso;
+			
+		
 			
 		END;
 	END IF;
@@ -1343,24 +1503,14 @@ BEGIN
 			
 			-- ------------------------------------------------------------------------------------
 		
-			SET @subtotal = (SELECT SUM((tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END))
-																						FROM tb07_listaproductostemp tb7 
-																						INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
-																						WHERE tb7.codacceso = inacceso);
-																						
-	SET @iva = (SELECT strdescrip FROM tb04_catalogo WHERE id = 534 AND estado = 8);
-	SET @ivasub = @subtotal / @iva;
-	SET @totalcord = @subtotal + @ivasub;
-	
-			SELECT tb7.id,
-			(SELECT tb6.codigo FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as codigo,
-			 tb7.cantidad as cantd,
-			(SELECT tb6.nombre FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as strdescrip,
-			tb7.preciocompra as preunit, tb7.precioventa as pretotal, 
-			(tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END) as precio, 
-			@subtotal as subtotal,
-			ROUND(@ivasub, 2) as iva,
-			ROUND(@totalcord, 2) as totalcordoba, 537 as mondol
+			SELECT tb7.id, tb7.incantidad, tb7.codproducto, tb6.codigo as strcodigoprod, tb6.nombre as strnombreprod, tb6.tipomoneda as inmoneda,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.id = tb6.tipomoneda) as abremoneda,
+						 tb6.costo as incostoprod, tb7.inconversioncosto, tb7.insubtotal, tb7.inexonerado, tb7.indescuento, tb7.inimpuesto,
+						 (SELECT t4.strcontent FROM tb04_catalogo t4 WHERE t4.idtabla = 535 AND t4.idgrupo = 1) as strmonedaNacional,
+						 tb7.intotal, tb7.codacceso, tb7.dtmingreso,
+						 (SELECT SUM(temp7.insubtotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoSubtotal,
+						 (SELECT SUM(temp7.inimpuesto) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoImpuesto,
+						 (SELECT SUM(temp7.intotal) FROM tb07_listaproductostemp temp7 WHERE temp7.codacceso = tb7.codacceso) as todoTotal
 			FROM tb07_listaproductostemp tb7 INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
 			WHERE tb7.codacceso = inacceso;
 			
@@ -1377,40 +1527,122 @@ BEGIN
 		END;
 	END IF;
 	
-	IF opc = 5 THEN
+	IF opc = 5 THEN -- Agregando Compra para generar Factura
 		BEGIN
-		
-			SET @mondolar = intotal / @tipcam;
-		
-			INSERT INTO tb09_compra (codproveedor, tipocomp, seriecomp, tipocamb, strdetalle, iva, submoncord, montodolar, montomoneda, idestado, codacceso)
-			VALUES(incodprod, tipocomprob,seriecomprob,@tipcam,strdeta,iniva,subtotal,ROUND(@mondolar,2),intotal,8, inacceso);
+						 
+			IF NOT EXISTS ( SELECT idcomp FROM tb09_compra WHERE idcomp = incodprod) THEN
 			
-			SET @subtotal = (SELECT SUM((tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END))
-																						FROM tb07_listaproductostemp tb7 
-																						INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
-																						WHERE tb7.codacceso = inacceso);
-																						
-			SET @iva = (SELECT strdescrip FROM tb04_catalogo WHERE id = 534 AND estado = 8);
-			SET @ivasub = @subtotal / @iva;
-			SET @totalcord = @subtotal + @ivasub;
+				INSERT INTO tb09_compra ( tipocambio, tipocompra, formapago, pagacon, cambiopago, strdetalle,
+																	subtotal, descuento, iva, totaldolar, totalnacional, codproveedor, estado, codacceso)
+																	
+				/*INSERT INTO tb09_compra (tipocambio, tipocompra, formapago, pagacon, cambiopago, strdetalle,
+																	descuento, iva, totaldolar, totalnacional, codproveedor, estado, codacceso)*/ VALUES 
+																(@tipcam, num02, incantidad, inprecompra, inpreventa, strdeta,
+																spsubtotal, indescuento, iniva, IFNULL((intotal/@tipcam),0), intotal, num01, 8, inacceso );
+					
+					SET @_idrecibo = (SELECT MAX(idcomp) FROM tb09_compra);
+					
+					INSERT INTO tb10_detacompra
+							( incantidad, idrecibo, tipocambio, codproducto, inmoneda, incostoprod, inconversioncosto,
+								inexonerado, insubtotal, indescuento, inimpuesto, intotal, codacceso )
+					SELECT t7.incantidad, @_idrecibo, @tipcam, t7.codproducto, t7.inmoneda, t7.incostoprod, t7.inconversioncosto,
+									t7.inexonerado, t7.insubtotal, t7.indescuento, t7.inimpuesto, t7.intotal, t7.codacceso
+						FROM tb07_listaproductostemp t7;
+		  END IF;
 			
-			SET @ultrec = (SELECT MAX(tb9.idcomp) FROM tb09_compra tb9 WHERE codacceso = inacceso);
+			-- DELETE FROM tb07_listaproductostemp WHERE codacceso = inacceso;
 			
-			INSERT INTO tb10_detacompra (codproducto, cantd, tipocambio, idmoneda, montodolar, montomoneda, preciomoneda, presubtotal, vmiva, vmptotal, codrecibo, codacceso)
+			-- RETORNA LOS DATOS QUE SERAN MOSTRADO EN LA FACTURA DE ACUEROD AL ACCESO DEL USUARIO.
+			SELECT LPAD(t9.idcomp,9,'0') as idcomp, t9.tipocambio, t9.tipocompra,
+			  (SELECT strdescrip FROM tb04_catalogo WHERE id = t9.formapago) as formapago, t9.pagacon, t9.cambiopago, t9.strdetalle,
+				IFNULL(t9.descuento,0) as descuento, IFNULL(t9.subtotal,0) as subtotal,
+				IFNULL(t9.iva,0) as iva, IFNULL(t9.totaldolar,0) as totaldolar, IFNULL(t9.totalnacional,0) as totalnacional,
+				(SELECT t8.nombre FROM tb08_cliente t8 WHERE t8.tipoconta = 528 AND t8.id = t9.codproveedor) as proveedor
+				, DATE_FORMAT(t9.dtmfactura,  '%d/%m/%Y %H:%i:%s') as dtmfactura, t9.estado, t9.codacceso,
+
+				t10.incantidad, t10.idrecibo,
+				(SELECT t6.nombre FROM tb06_productos t6 WHERE t6.id = t10.codproducto) as strproducto,
+				t10.inmoneda, t10.incostoprod, t10.inconversioncosto, t10.inexonerado,
+				t10.insubtotal, t10.indescuento, t10.inimpuesto, t10.intotal,
+
+				t00.nombre, t00.foto, t00.telefono, t00.celular, t00.ubicacion, t00.ruc, t00.email
+			FROM tb09_compra t9
+			LEFT JOIN tb10_detacompra t10 ON t9.idcomp = t10.idrecibo
+			INNER JOIN tb00_empresa t00 ON t00.id = 1
+			WHERE t10.idrecibo = (SELECT MAX(idcomp) FROM tb09_compra) AND t9.codacceso = inacceso;
+			
+		END;
+	END IF;
 	
-			SELECT  tb7.codproducto, tb7.cantidad as cantd, @tipcam as tipocamb,
-			tb6.tipomoneda as idmoneda,
-			CASE WHEN tb6.tipomoneda=536 THEN ROUND((tb7.preciocompra/@tipcam),2) ELSE tb7.preciocompra END as mtodolares,
-			CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END as mtocordobas,
-			(tb7.cantidad * CASE WHEN tb6.tipomoneda=537 THEN ROUND((tb7.preciocompra*@tipcam),2) ELSE tb7.preciocompra END) as preciocord, 
-			ROUND(@subtotal, 2) as subtotalcord, ROUND(@ivasub, 2) as iva, 
-			ROUND(@totalcord, 2) as totalcordoba, @ultrec as codrecibo, 9 as codacceso
+	IF opc = 6 THEN
+		BEGIN
+			-- SELECT incodprod, incantidad, subtotal, indescuento, iniva, intotal, inacceso;
+			
+			UPDATE tb07_listaproductostemp SET 
+				cantidad=incantidad,
+				subtotal = spsubtotal,
+				descuento = indescuento,
+				impuesto = iniva,
+				total = intotal,
+				codacceso = inacceso,
+				simbdesct = num01,
+				simbiva = num02
+			WHERE id = incodprod;
+			
+			SET @_subtotal = (SELECT SUM(tb7.subtotal) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_desct = (SELECT SUM(tb7.descuento) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_iva = (SELECT SUM(tb7.impuesto) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_total = (SELECT SUM(tb7.total) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+	
+			SELECT tb7.id, tb7.codproducto, (SELECT tb6.codigo FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as codigo,
+			 tb7.cantidad as cantd, tb7.simbdesct, tb7.simbiva, (SELECT tb6.nombre FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as strdescrip,
+			tb7.preciocompra as preunit, tb7.preciomond as premond, tb7.subtotal as subtotal_xproducto,  tb7.total as precio_xproducto, tb7.descuento as dect_xproducto, tb7.impuesto as imp_xproducto,
+			@_subtotal as subtotal, @_desct as desct, @_iva as iva, @_total as totalcordoba, tb6.tipomoneda as mondol,
+			CASE WHEN tb7.descuento >0 THEN "D" ELSE "" END AS strD, CASE WHEN tb7.impuesto >0 THEN "I" ELSE "" END AS strI,
+			(SELECT tb4.strcontent	FROM tb04_catalogo tb4 WHERE tb4.id=tb6.tipomoneda) as abremoneda,
+			(SELECT tb4.strcontent	FROM tb04_catalogo tb4 WHERE tb4.id=536) as solomoneda, @tipcam as tipocambio
 			FROM tb07_listaproductostemp tb7 INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
 			WHERE tb7.codacceso = inacceso;
 			
-			DELETE FROM tb07_listaproductostemp WHERE codacceso = inacceso;
-			
 		END;
+	END IF;
+	
+	IF opc = 7 THEN
+	BEGIN
+	
+			-- Subtotal
+			SET @subtotal_prod = ROUND(incantidad * (SELECT tb7.preciocompra FROM tb07_listaproductostemp tb7 WHERE tb7.id = incodprod),2);
+			-- Descuento
+			SET @Descuento_prod = @subtotal_prod * ROUND(indescuento / 100, 2);
+			-- IVA
+			SET @iva_prod = @subtotal_prod * ROUND(iniva / 100, 2);
+			-- Total del producto
+			SET @total_prod = (@subtotal_prod - @Descuento_prod) + @iva_prod;
+			
+			UPDATE tb07_listaproductostemp SET 
+				cantidad=incantidad,
+				descuento = indescuento,
+				impuesto = iniva,
+				subtotal=@subtotal_prod,
+				total=@total_prod,
+				codacceso = inacceso
+			WHERE id = incodprod;
+			
+			SET @_subtotal = (SELECT SUM(tb7.subtotal) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_desct = (SELECT SUM(tb7.descuento) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_iva = (SELECT SUM(tb7.impuesto) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+			SET @_total = (SELECT SUM(tb7.total) FROM tb07_listaproductostemp tb7 WHERE tb7.codacceso = inacceso);
+	
+			SELECT tb7.id, tb7.codproducto, (SELECT tb6.codigo FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as codigo,
+			 tb7.cantidad as cantd, tb7.simbdesct, tb7.simbiva, (SELECT tb6.nombre FROM tb06_productos tb6 WHERE tb6.id = tb7.codproducto) as strdescrip,
+			tb7.preciocompra as preunit, tb7.preciomond as premond, tb7.subtotal as subtotal_xproducto,  tb7.total as precio_xproducto, tb7.descuento as dect_xproducto, tb7.impuesto as imp_xproducto,
+			@_subtotal as subtotal, @_desct as desct, @_iva as iva, @_total as totalcordoba, tb6.tipomoneda as mondol,
+			CASE WHEN tb7.descuento >0 THEN "D" ELSE "" END AS strD, CASE WHEN tb7.impuesto >0 THEN "I" ELSE "" END AS strI,
+			(SELECT tb4.strcontent	FROM tb04_catalogo tb4 WHERE tb4.id=tb6.tipomoneda) as abremoneda,
+			(SELECT tb4.strcontent	FROM tb04_catalogo tb4 WHERE tb4.id=536) as solomoneda, @tipcam as tipocambio
+			FROM tb07_listaproductostemp tb7 INNER JOIN tb06_productos tb6 ON tb7.codproducto = tb6.id
+			WHERE tb7.codacceso = inacceso;
+	END;
 	END IF;
 
 	
