@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 14/09/2019 11:58:54
+ Date: 23/09/2019 21:16:21
 */
 
 SET NAMES utf8mb4;
@@ -169,7 +169,7 @@ CREATE TABLE `tb04_catalogo`  (
   `fecha` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idxcatalogo`(`id`, `idtabla`, `idgrupo`, `strdescrip`, `estado`, `fecha`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 559 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 571 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb04_catalogo
@@ -624,9 +624,21 @@ INSERT INTO `tb04_catalogo` VALUES (552, 550, 0, 'CHEQUE', NULL, 8, '2019-09-05 
 INSERT INTO `tb04_catalogo` VALUES (553, 550, 0, 'TARJETA DE DÉBITO', NULL, 8, '2019-09-05 00:26:17');
 INSERT INTO `tb04_catalogo` VALUES (554, 550, 0, 'TARETA DE CRÉDITO', NULL, 8, '2019-09-05 00:26:25');
 INSERT INTO `tb04_catalogo` VALUES (555, 550, 0, 'TRANSACCIÓN', NULL, 8, '2019-09-05 00:26:31');
-INSERT INTO `tb04_catalogo` VALUES (556, 0, NULL, 'CONFIRMACION', NULL, 8, '2019-09-07 16:18:00');
+INSERT INTO `tb04_catalogo` VALUES (556, 0, 99999, 'CONFIRMACION', NULL, 8, '2019-09-07 16:18:00');
 INSERT INTO `tb04_catalogo` VALUES (557, 556, 0, 'SI', NULL, 8, '2019-09-07 16:18:12');
 INSERT INTO `tb04_catalogo` VALUES (558, 556, 0, 'NO', NULL, 8, '2019-09-07 16:18:21');
+INSERT INTO `tb04_catalogo` VALUES (559, 0, 99999, 'TIPO PROSER', NULL, 8, '2019-09-15 10:55:05');
+INSERT INTO `tb04_catalogo` VALUES (560, 559, 0, 'PRODUCTO', NULL, 8, '2019-09-15 10:55:12');
+INSERT INTO `tb04_catalogo` VALUES (561, 559, 0, 'SERVICIO', NULL, 8, '2019-09-15 10:55:24');
+INSERT INTO `tb04_catalogo` VALUES (562, 0, 99999, 'DIVISION PRODUCTOS', NULL, 8, '2019-09-15 12:51:06');
+INSERT INTO `tb04_catalogo` VALUES (563, 562, 0, 'DIVISION 1', NULL, 8, '2019-09-15 12:51:16');
+INSERT INTO `tb04_catalogo` VALUES (564, 0, 99999, 'SUB CATEGORIA', NULL, 8, '2019-09-15 12:52:14');
+INSERT INTO `tb04_catalogo` VALUES (565, 564, 0, 'SUB CATEGORIA 1', NULL, 8, '2019-09-15 12:52:30');
+INSERT INTO `tb04_catalogo` VALUES (566, 0, 99999, 'FACTURAR CON..', NULL, 8, '2019-09-15 14:37:24');
+INSERT INTO `tb04_catalogo` VALUES (567, 566, 0, '1', NULL, 8, '2019-09-15 14:37:25');
+INSERT INTO `tb04_catalogo` VALUES (568, 566, 0, '2', NULL, 8, '2019-09-15 14:37:27');
+INSERT INTO `tb04_catalogo` VALUES (569, 566, 0, '3', NULL, 8, '2019-09-15 14:37:27');
+INSERT INTO `tb04_catalogo` VALUES (570, 566, 0, '4', NULL, 8, '2019-09-15 14:37:29');
 
 -- ----------------------------
 -- Table structure for tb05_fabricante
@@ -651,6 +663,115 @@ INSERT INTO `tb05_fabricante` VALUES (29, 'asdsadas', 323, '2019-04-15 18:40:45'
 INSERT INTO `tb05_fabricante` VALUES (28, 'Calor Extremo en Peligro', 90, '2019-04-14 18:35:57', 9);
 INSERT INTO `tb05_fabricante` VALUES (17, 'Erwin Adrian Vargas Mayorga', 128, '2019-04-13 00:41:44', 8);
 INSERT INTO `tb05_fabricante` VALUES (26, 'Maria de los Angeles Espinoza Reyes', 33, '2019-04-14 18:00:43', 8);
+
+-- ----------------------------
+-- Table structure for tb06_inventario
+-- ----------------------------
+DROP TABLE IF EXISTS `tb06_inventario`;
+CREATE TABLE `tb06_inventario`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tb_strcodigo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_strnombre` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_incostos` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_indolar` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio1` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio2` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio3` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio4` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inutilidad1` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad2` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad3` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad4` int(3) NULL DEFAULT NULL,
+  `tb_instock` int(7) NULL DEFAULT NULL,
+  `tb_indescuento` int(3) NULL DEFAULT NULL,
+  `tb_contieneVende` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_contieneCompra` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_ccventa` int(2) NULL DEFAULT NULL,
+  `tb_ccCompra` int(2) NULL DEFAULT NULL,
+  `tb_strdescrip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_inselectedTipo` int(4) NULL DEFAULT NULL,
+  `tb_inselectedDivision` int(4) NULL DEFAULT NULL,
+  `tb_selectedCategory` int(4) NULL DEFAULT NULL,
+  `tb_selectedSubCategoria` int(4) NULL DEFAULT NULL,
+  `tb_selectedUbicacion` int(4) NULL DEFAULT NULL,
+  `tb_selectedFabricante` int(4) NULL DEFAULT NULL,
+  `tb_selectedPreferenciaMoneda` int(4) NULL DEFAULT NULL,
+  `tb_selectedFacturarCon` int(4) NULL DEFAULT NULL,
+  `tb_selectedVende` int(4) NULL DEFAULT NULL,
+  `tb_SelectedCompra` int(4) NULL DEFAULT NULL,
+  `tb_selectedIVA` int(4) NULL DEFAULT NULL,
+  `tb_selectedProveedor` int(4) NULL DEFAULT NULL,
+  `tb_img1` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img2` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img3` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img4` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img5` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_estado` int(3) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb06_inventario
+-- ----------------------------
+INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 567, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 100, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 100, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+
+-- ----------------------------
+-- Table structure for tb06_inventarioeliminados
+-- ----------------------------
+DROP TABLE IF EXISTS `tb06_inventarioeliminados`;
+CREATE TABLE `tb06_inventarioeliminados`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tb_strcodigo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_strnombre` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_incostos` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_indolar` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio1` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio2` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio3` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inprecio4` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_inutilidad1` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad2` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad3` int(3) NULL DEFAULT NULL,
+  `tb_inutilidad4` int(3) NULL DEFAULT NULL,
+  `tb_instock` int(7) NULL DEFAULT NULL,
+  `tb_indescuento` int(3) NULL DEFAULT NULL,
+  `tb_contieneVende` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_contieneCompra` decimal(18, 2) NULL DEFAULT NULL,
+  `tb_ccventa` int(2) NULL DEFAULT NULL,
+  `tb_ccCompra` int(2) NULL DEFAULT NULL,
+  `tb_strdescrip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_inselectedTipo` int(4) NULL DEFAULT NULL,
+  `tb_inselectedDivision` int(4) NULL DEFAULT NULL,
+  `tb_selectedCategory` int(4) NULL DEFAULT NULL,
+  `tb_selectedSubCategoria` int(4) NULL DEFAULT NULL,
+  `tb_selectedUbicacion` int(4) NULL DEFAULT NULL,
+  `tb_selectedFabricante` int(4) NULL DEFAULT NULL,
+  `tb_selectedPreferenciaMoneda` int(4) NULL DEFAULT NULL,
+  `tb_selectedFacturarCon` int(4) NULL DEFAULT NULL,
+  `tb_selectedVende` int(4) NULL DEFAULT NULL,
+  `tb_SelectedCompra` int(4) NULL DEFAULT NULL,
+  `tb_selectedIVA` int(4) NULL DEFAULT NULL,
+  `tb_selectedProveedor` int(4) NULL DEFAULT NULL,
+  `tb_img1` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img2` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img3` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img4` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_img5` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tb_estado` int(3) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb06_inventarioeliminados
+-- ----------------------------
+INSERT INTO `tb06_inventarioeliminados` VALUES (1, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (2, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (3, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (4, '893888', 'Cocina de Gas', 56.00, 34.00, 56.80, 67.34, 12.90, 6.00, 5, 7, 9, 1, 786, 7, 1.00, 90.00, 0, 0, 'Esto es una prueba del inventario', 560, 563, 290, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (5, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventarioeliminados` VALUES (6, '65464564', 'OutSorcing', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 1, 0, 'asdasdsadasda', 561, 563, 314, 565, 539, 82, 537, 568, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
 -- Table structure for tb06_productos
@@ -715,7 +836,7 @@ CREATE TABLE `tb07_listaproductostemp`  (
   `dtmingreso` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idxtempprod`(`incantidad`, `codproducto`, `incostoprod`, `inconversioncosto`, `codacceso`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb07_listaproductostemp
@@ -723,6 +844,8 @@ CREATE TABLE `tb07_listaproductostemp`  (
 INSERT INTO `tb07_listaproductostemp` VALUES (2, 2, 9, 536, 500.00, 500.00, 1000.00, 558, 0.00, 150.00, 1150.00, 9, '2019-09-08 17:12:09');
 INSERT INTO `tb07_listaproductostemp` VALUES (3, 3, 12, 537, 9.00, 300.90, 902.70, 558, 0.00, 135.41, 1038.11, 9, '2019-09-08 17:12:10');
 INSERT INTO `tb07_listaproductostemp` VALUES (4, 1, 17, 536, 15.00, 15.00, 15.00, 558, 0.00, 2.25, 17.25, 9, '2019-09-08 17:12:12');
+INSERT INTO `tb07_listaproductostemp` VALUES (5, 1, 6, 537, 200.00, 6700.14, 6700.14, 558, 0.00, 1005.02, 7705.16, 7, '2019-09-23 16:39:30');
+INSERT INTO `tb07_listaproductostemp` VALUES (6, 1, 17, 536, 15.00, 15.00, 15.00, 558, 0.00, 2.25, 17.25, 7, '2019-09-23 16:39:43');
 
 -- ----------------------------
 -- Table structure for tb07_tipocambio
@@ -969,6 +1092,29 @@ FROM tb06_productos tb6
 ORDER BY tb6.id DESC ;
 
 -- ----------------------------
+-- View structure for vta02_inventario
+-- ----------------------------
+DROP VIEW IF EXISTS `vta02_inventario`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vta02_inventario` AS SELECT id, tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
+			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento,
+			tb_contieneVende, tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_inselectedTipo) as tc_inselectedTipo, tb_inselectedDivision,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_inselectedDivision) as tc_inselectedDivision, tb_selectedCategory,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedCategory) as tc_selectedCategory, tb_selectedSubCategoria,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedSubCategoria) as tc_selectedSubCategoria, tb_selectedUbicacion,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedUbicacion) as tc_selectedUbicacion, tb_selectedFabricante,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedFabricante) as tc_selectedFabricante, tb_selectedPreferenciaMoneda,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedPreferenciaMoneda) as tc_selectedPreferenciaMoneda, tb_selectedFacturarCon,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedFacturarCon) as	tc_selectedFacturarCon, tb_selectedVende,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedVende) as tc_selectedVende, tb_SelectedCompra,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_SelectedCompra) as tc_SelectedCompra, tb_selectedIVA,
+			(SELECT t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = tb_selectedIVA) as tc_selectedIVA, tb_selectedProveedor,
+			(SELECT t8.nombre FROM tb08_cliente t8 WHERE t8.id = tb_selectedProveedor) as tc_selectedProveedor,
+			tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado
+FROM tb06_inventario
+ORDER BY id DESC ;
+
+-- ----------------------------
 -- Procedure structure for sp01_catalogo
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp01_catalogo`;
@@ -1035,7 +1181,7 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 		
 	END IF;
 	
-	-- Listado de Categoria, Presentacion, Fabricante
+	-- Listado de Inventario
 	IF opc = 4 THEN
 	BEGIN
 	
@@ -1059,9 +1205,36 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 		SELECT id as cod, strdescrip as strnombre, 5
 		FROM tb04_catalogo WHERE idtabla = 535 AND estado = 8;
 		
-		INSERT INTO datos(idcod,strdescrip,idtabla) -- Ubicacion
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Ubicacion 
 		SELECT id as cod, strdescrip as strnombre, 6
 		FROM tb04_catalogo WHERE idtabla = 538 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Tipo Proser
+		SELECT id as cod, strdescrip as strnombre, 7
+		FROM tb04_catalogo WHERE idtabla = 559 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Division del producto
+		SELECT id as cod, strdescrip as strnombre, 8
+		FROM tb04_catalogo WHERE idtabla = 562 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Sub Categoria del producto
+		SELECT id as cod, strdescrip as strnombre, 9
+		FROM tb04_catalogo WHERE idtabla = 564 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Facturar producto con..
+		SELECT id as cod, strdescrip as strnombre, 10
+		FROM tb04_catalogo WHERE idtabla = 566 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- IVA
+		SELECT id as cod, strdescrip as strnombre, 11
+		FROM tb04_catalogo WHERE idtabla = 533 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Proveedores
+		SELECT id as cod, nombre as strnombre, 12
+		FROM tb08_cliente WHERE tipoconta = 528 AND estado = 8;
+		
+		INSERT INTO datos(idcod,strdescrip,idtabla) -- Tipo de Cambio
+		SELECT id, tipoCambio, 13 FROM tb07_tipocambio WHERE fecha = CURDATE();
 
 		SELECT idcod as `value`, strdescrip as label, idtabla as fil FROM datos ORDER BY id,strdescrip;
 		
@@ -1162,6 +1335,155 @@ CREATE TEMPORARY TABLE IF NOT EXISTS alimeproducto(
 	END;
 	END IF;
 	
+
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for spfactura_01inventario
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `spfactura_01inventario`;
+delimiter ;;
+CREATE PROCEDURE `spfactura_01inventario`(in opc int, in spidcod int, in spstrcodigo varchar(50),
+in spstrnombre varchar(80), in spincostos decimal(18,2), in spindolar decimal(18,2), in spinprecio1 decimal(18,2),
+in spinprecio2 decimal(18,2), in spinprecio3 decimal(18,2), in spinprecio4 decimal(18,2), in spinutilidad1 int, in spinutilidad2 int,
+in spinutilidad3 int, in spinutilidad4 int, in spinstock int, in spindescuento int, in spcontieneVende  decimal(18,2),
+in spcontieneCompra  decimal(18,2), in spccventa int, in spccCompra int, in spstrdescrip varchar(255),
+in spinselectedTipo int, in spinselectedDivision int, in spselectedCategory int, in spselectedSubCategoria int,
+in spselectedUbicacion int, in spselectedFabricante int, in spselectedPreferenciaMoneda int, in spselectedFacturarCon int,
+in spselectedVende int, in spSelectedCompra int,  in spselectedIVA int, in spselectedProveedor int,
+in spimg1 varchar(40), in spimg2 varchar(40), in spimg3 varchar(40), in spimg4 varchar(40), in spimg5 varchar(40), in spestado int)
+BEGIN
+	-- Agregar, Actualizar inventario de productos
+	IF opc = 1 THEN
+	BEGIN
+	
+		IF NOT EXISTS ( SELECT id FROM tb06_inventario WHERE id = spidcod) THEN
+		BEGIN
+			INSERT INTO tb06_inventario (tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
+																	tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende, tb_contieneCompra,
+																	tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory, tb_selectedSubCategoria,
+																	tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon, tb_selectedVende,
+																	tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado) VALUES
+																	
+																	(spstrcodigo, spstrnombre, spincostos, spindolar, spinprecio1, spinprecio2, spinprecio3, spinprecio4, 
+																	spinutilidad1, spinutilidad2, spinutilidad3, spinutilidad4, spinstock, spindescuento, spcontieneVende, spcontieneCompra,
+																	spccventa, spccCompra, spstrdescrip, spinselectedTipo, spinselectedDivision, spselectedCategory, spselectedSubCategoria,
+																	spselectedUbicacion, spselectedFabricante, spselectedPreferenciaMoneda, spselectedFacturarCon, spselectedVende,
+																	spSelectedCompra, spselectedIVA, spselectedProveedor, spimg1, spimg2, spimg3, spimg4, spimg5, spestado);
+		END;
+		ELSE
+		BEGIN
+		
+			UPDATE tb06_inventario SET 
+				tb_strcodigo=spstrcodigo,
+				tb_strnombre=spstrnombre, 
+				tb_incostos=spincostos, 
+				tb_indolar=spindolar,
+				tb_inprecio1=spinprecio1,
+				tb_inprecio2=spinprecio2, 
+				tb_inprecio3=spinprecio3, 
+				tb_inprecio4=spinprecio4,
+				tb_inutilidad1=spinutilidad1, 
+				tb_inutilidad2=spinutilidad2, 
+				tb_inutilidad3=spinutilidad3, 
+				tb_inutilidad4=spinutilidad4, 
+				tb_instock=spinstock,
+				tb_indescuento=spindescuento,
+				tb_contieneVende=spcontieneVende, 
+				tb_contieneCompra=spcontieneCompra,
+				tb_ccventa=spccventa, 
+				tb_ccCompra=spccCompra, 
+				tb_strdescrip=spstrdescrip, 
+				tb_inselectedTipo=spinselectedTipo, 
+				tb_inselectedDivision=spinselectedDivision, 
+				tb_selectedCategory=spselectedCategory, 
+				tb_selectedSubCategoria=spselectedSubCategoria,
+				tb_selectedUbicacion=spselectedUbicacion, 
+				tb_selectedFabricante=spselectedFabricante, 
+				tb_selectedPreferenciaMoneda=spselectedPreferenciaMoneda, 
+				tb_selectedFacturarCon=spselectedFacturarCon, 
+				tb_selectedVende=spselectedVende,
+				tb_SelectedCompra=spSelectedCompra, 
+				tb_selectedIVA=spselectedIVA, 
+				tb_selectedProveedor=spselectedProveedor, 
+				tb_img1=spimg1, 
+				tb_img2=spimg2, 
+				tb_img3=spimg3, 
+				tb_img4=spimg4, 
+				tb_img5=spimg5, 
+				tb_estado=spestado
+		  WHERE id = spidcod;
+		END;
+		END IF;
+		
+		SELECT v02.id, v02.tb_strcodigo, v02.tb_strnombre, v02.tb_incostos, v02.tb_indolar, v02.tb_inprecio1, v02.tb_inprecio2,
+			v02.tb_inprecio3, v02.tb_inprecio4,
+			v02.tb_inutilidad1, v02.tb_inutilidad2, v02.tb_inutilidad3, v02.tb_inutilidad4, v02.tb_instock, v02.tb_indescuento,
+			v02.tb_contieneVende, v02.tb_contieneCompra, v02.tb_ccventa, v02.tb_ccCompra, v02.tb_strdescrip, v02.tb_inselectedTipo, v02.tc_inselectedTipo,
+			v02.tb_inselectedDivision, v02.tc_inselectedDivision, v02.tb_selectedCategory, v02.tc_selectedCategory, 
+			v02.tb_selectedSubCategoria, v02.tc_selectedSubCategoria, v02.tb_selectedUbicacion, v02.tc_selectedUbicacion,
+			v02.tb_selectedFabricante, v02.tc_selectedFabricante, v02.tb_selectedPreferenciaMoneda, v02.tc_selectedPreferenciaMoneda,
+			v02.tb_selectedFacturarCon, v02.tc_selectedFacturarCon, v02.tb_selectedVende, v02.tc_selectedVende,
+			v02.tb_SelectedCompra, v02.tc_SelectedCompra, v02.tb_selectedIVA, v02.tc_selectedIVA,
+			v02.tb_selectedProveedor, v02.tc_selectedProveedor,
+			v02.tb_img1, v02.tb_img2, v02.tb_img3, v02.tb_img4, v02.tb_img5, v02.tb_estado
+		FROM vta02_inventario v02;
+		
+	END;
+	END IF;
+	
+	IF opc = 2 THEN -- Lista de los productos del Inventario
+	BEGIN
+		SELECT v02.id, v02.tb_strcodigo, v02.tb_strnombre, v02.tb_incostos, v02.tb_indolar, v02.tb_inprecio1, v02.tb_inprecio2,
+			v02.tb_inprecio3, v02.tb_inprecio4,
+			v02.tb_inutilidad1, v02.tb_inutilidad2, v02.tb_inutilidad3, v02.tb_inutilidad4, v02.tb_instock, v02.tb_indescuento,
+			v02.tb_contieneVende, v02.tb_contieneCompra, v02.tb_ccventa, v02.tb_ccCompra, v02.tb_strdescrip, v02.tb_inselectedTipo, v02.tc_inselectedTipo,
+			v02.tb_inselectedDivision, v02.tc_inselectedDivision, v02.tb_selectedCategory, v02.tc_selectedCategory, 
+			v02.tb_selectedSubCategoria, v02.tc_selectedSubCategoria, v02.tb_selectedUbicacion, v02.tc_selectedUbicacion,
+			v02.tb_selectedFabricante, v02.tc_selectedFabricante, v02.tb_selectedPreferenciaMoneda, v02.tc_selectedPreferenciaMoneda,
+			v02.tb_selectedFacturarCon, v02.tc_selectedFacturarCon, v02.tb_selectedVende, v02.tc_selectedVende,
+			v02.tb_SelectedCompra, v02.tc_SelectedCompra, v02.tb_selectedIVA, v02.tc_selectedIVA,
+			v02.tb_selectedProveedor, v02.tc_selectedProveedor,
+			v02.tb_img1, v02.tb_img2, v02.tb_img3, v02.tb_img4, v02.tb_img5, v02.tb_estado
+		FROM vta02_inventario v02;
+	END;
+	END IF;
+	
+	IF opc = 3 THEN -- Eliminando Items del Inventario - RECUPERACION
+	BEGIN
+		
+		INSERT INTO tb06_inventarioeliminados (tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2,
+			tb_inprecio3, tb_inprecio4, tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento,
+			tb_contieneVende, tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision,
+			tb_selectedCategory, tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda,
+			tb_selectedFacturarCon, tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2,
+			tb_img3, tb_img4, tb_img5, tb_estado)
+		SELECT tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
+			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende,
+			tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory,
+			tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon,
+			tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado
+		FROM tb06_inventario WHERE id = spidcod;
+		
+		DELETE FROM tb06_inventario WHERE id = spidcod;
+		
+		SELECT v02.id, v02.tb_strcodigo, v02.tb_strnombre, v02.tb_incostos, v02.tb_indolar, v02.tb_inprecio1, v02.tb_inprecio2,
+			v02.tb_inprecio3, v02.tb_inprecio4,
+			v02.tb_inutilidad1, v02.tb_inutilidad2, v02.tb_inutilidad3, v02.tb_inutilidad4, v02.tb_instock, v02.tb_indescuento,
+			v02.tb_contieneVende, v02.tb_contieneCompra, v02.tb_ccventa, v02.tb_ccCompra, v02.tb_strdescrip, v02.tb_inselectedTipo, v02.tc_inselectedTipo,
+			v02.tb_inselectedDivision, v02.tc_inselectedDivision, v02.tb_selectedCategory, v02.tc_selectedCategory, 
+			v02.tb_selectedSubCategoria, v02.tc_selectedSubCategoria, v02.tb_selectedUbicacion, v02.tc_selectedUbicacion,
+			v02.tb_selectedFabricante, v02.tc_selectedFabricante, v02.tb_selectedPreferenciaMoneda, v02.tc_selectedPreferenciaMoneda,
+			v02.tb_selectedFacturarCon, v02.tc_selectedFacturarCon, v02.tb_selectedVende, v02.tc_selectedVende,
+			v02.tb_SelectedCompra, v02.tc_SelectedCompra, v02.tb_selectedIVA, v02.tc_selectedIVA,
+			v02.tb_selectedProveedor, v02.tc_selectedProveedor,
+			v02.tb_img1, v02.tb_img2, v02.tb_img3, v02.tb_img4, v02.tb_img5, v02.tb_estado
+		FROM vta02_inventario v02;
+		
+	END;
+	END IF;
 
 END
 ;;

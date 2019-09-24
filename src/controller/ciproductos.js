@@ -89,12 +89,13 @@ controller.addProductos = (req, res)=>{
     })
 }
 
-controller.deleteProductosxid = (req, res)=>{
+
+controller.deleteInvenntarioxid = (req, res)=>{
     const { id } = req.body;
     req.getConnection((err, conx)=>{
         if(err) next(err)
         else {
-            conx.query('call spfactura_01productos(?,?,0,"","",0,0,"",0,0,0,0,0,0,0,"",0)',[3,id], (err, result)=>{
+            conx.query('call spfactura_01inventario(3, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[id], (err, result)=>{
                 if(err)
                     res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -104,6 +105,55 @@ controller.deleteProductosxid = (req, res)=>{
         }
     })
 }
+
+
+// Inicio de nuevas funciones de Inventario
+
+
+controller.addInventario = (req, res, next) => {
+    const { idcod, strcodigo, strnombre, incostos, indolar, inprecio1, inprecio2, inprecio3, inprecio4, 
+            inutilidad1, inutilidad2, inutilidad3, inutilidad4, instock, indescuento, contieneVende,
+            contieneCompra, ccventa, ccCompra, strdescrip,inselectedTipo, inselectedDivision, inselectedCategory, inselectedSubCategoria,
+            inselectedUbicacion, inselectedFabricante, inselectedPreferenciaMoneda, inselectedFacturarCon, inselectedVende,
+            inselectedCompra, inselectedIVA, inselectedProveedor } = req.body;
+
+    req.getConnection((err, conn)=>{
+        if (err) next(err)
+        else {
+            conn.query('call spfactura_01inventario(1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"", "","","","", 8)',
+                [idcod, strcodigo, strnombre, incostos, indolar, inprecio1, inprecio2, inprecio3, inprecio4, 
+            inutilidad1, inutilidad2, inutilidad3, inutilidad4, instock, indescuento, contieneVende,
+            contieneCompra, ccventa, ccCompra, strdescrip,inselectedTipo, inselectedDivision, inselectedCategory, inselectedSubCategoria,
+            inselectedUbicacion, inselectedFabricante, inselectedPreferenciaMoneda, inselectedFacturarCon, inselectedVende,
+            inselectedCompra, inselectedIVA, inselectedProveedor], (err, result)=> {
+                if(err)
+                res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
+                else {
+                    res.send(JSON.stringify(result[0]));
+                }
+            })
+        }
+    })
+
+}
+
+
+controller.listInventario = (req, res, next) => {
+    req.getConnection((err, conn)=>{
+        if (err) next(err)
+        else {
+            conn.query('call spfactura_01inventario(2, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)', (err, result)=> {
+                if(err)
+                res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
+                else {
+                    res.send(JSON.stringify(result[0]));
+                }
+            })
+        }
+    })
+
+}
+
 
 module.exports = controller;
 

@@ -31,7 +31,11 @@ router_user.post('/delfabricantes', cifabricante.deleteFabricantes);
 router_user.post('/getcat_productos', ciproductos.getCatalogo);
 router_user.post('/getproductos', ciproductos.getProductos);
 router_user.post('/addproductos', ciproductos.addProductos);
-router_user.post('/delproductos', ciproductos.deleteProductosxid);
+
+// Inventario
+router_user.post('/addInventario', ciproductos.addInventario);
+router_user.post('/listInventario', ciproductos.listInventario);
+router_user.post('/deleteInvenntarioxid', ciproductos.deleteInvenntarioxid);
 
 // Directorio - Cliente
 router_user.post('/getcat_cliente', cidirectorio.getCatalogo);
