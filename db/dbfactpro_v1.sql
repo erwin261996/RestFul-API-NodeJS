@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 26/09/2019 23:36:23
+ Date: 23/09/2019 21:16:21
 */
 
 SET NAMES utf8mb4;
@@ -714,7 +714,7 @@ CREATE TABLE `tb06_inventario`  (
 -- Records of tb06_inventario
 -- ----------------------------
 INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 567, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 150, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 100, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
 INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 100, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
@@ -761,12 +761,17 @@ CREATE TABLE `tb06_inventarioeliminados`  (
   `tb_img5` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `tb_estado` int(3) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb06_inventarioeliminados
 -- ----------------------------
-INSERT INTO `tb06_inventarioeliminados` VALUES (7, '893888', 'Cocina de Gas', 56.00, 34.00, 56.80, 67.34, 12.90, 6.00, 5, 7, 9, 1, 786, 7, 1.00, 90.00, 0, 0, 'Esto es una prueba del inventario', 560, 563, 290, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (1, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (2, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (3, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (4, '893888', 'Cocina de Gas', 56.00, 34.00, 56.80, 67.34, 12.90, 6.00, 5, 7, 9, 1, 786, 7, 1.00, 90.00, 0, 0, 'Esto es una prueba del inventario', 560, 563, 290, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', NULL);
+INSERT INTO `tb06_inventarioeliminados` VALUES (5, '0', 'aadsfsdfsdf', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 0, 0, 'asdsadadsa', 560, 563, 294, 565, 539, 39, 536, 568, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventarioeliminados` VALUES (6, '65464564', 'OutSorcing', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0.00, 0.00, 1, 0, 'asdasdsadasda', 561, 563, 314, 565, 539, 82, 537, 568, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
 -- Table structure for tb06_productos
@@ -1070,42 +1075,6 @@ CREATE TABLE `tb11_detafactura`  (
   `total` decimal(18, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Table structure for tb11_inventarioconteo
--- ----------------------------
-DROP TABLE IF EXISTS `tb11_inventarioconteo`;
-CREATE TABLE `tb11_inventarioconteo`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `prodcontados` int(5) NULL DEFAULT NULL,
-  `codacceso` int(3) NULL DEFAULT NULL,
-  `estado` int(4) NULL DEFAULT NULL,
-  `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Table structure for tb12_detalleconteo
--- ----------------------------
-DROP TABLE IF EXISTS `tb12_detalleconteo`;
-CREATE TABLE `tb12_detalleconteo`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codprod` int(11) NULL DEFAULT NULL,
-  `conteo` int(5) NULL DEFAULT NULL,
-  `stockactual` int(5) NULL DEFAULT NULL,
-  `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `codacceso` int(5) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tb12_detalleconteo
--- ----------------------------
-INSERT INTO `tb12_detalleconteo` VALUES (13, 9, 0, 100, '', '2019-09-26 23:25:05', 7);
-INSERT INTO `tb12_detalleconteo` VALUES (22, 7, 45, 150, 'aaaaaaaaaaaaaaaaaaa', '2019-09-26 23:29:13', 7);
-INSERT INTO `tb12_detalleconteo` VALUES (23, 6, 7, 567, 'Esto es una prueba no mas xxx', '2019-09-26 23:33:21', 7);
 
 -- ----------------------------
 -- View structure for vta01_productos
@@ -1515,138 +1484,6 @@ BEGIN
 		
 	END;
 	END IF;
-	
-	IF opc = 4 THEN -- Lista de inventario de elementos eliminados
-	BEGIN
-	
-		SET @_totaleliminados = (SELECT COUNT(id) FROM tb06_inventarioeliminados);
-		
-		SELECT id, tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
-			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende,
-			tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory,
-			tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon,
-			tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado,
-			@_totaleliminados as totaleliminados
-		FROM tb06_inventarioeliminados;
-	END;
-	END IF;
-	
-	IF opc = 5 THEN -- Recuperar Items de Inventario Eliminados - RECUPERACION :: tb06_inventarioeliminados
-	BEGIN
-		
-		INSERT INTO tb06_inventario (tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2,
-			tb_inprecio3, tb_inprecio4, tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento,
-			tb_contieneVende, tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision,
-			tb_selectedCategory, tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda,
-			tb_selectedFacturarCon, tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2,
-			tb_img3, tb_img4, tb_img5, tb_estado)
-		SELECT tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
-			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende,
-			tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory,
-			tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon,
-			tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado
-		FROM tb06_inventarioeliminados WHERE id = spidcod;
-		
-		DELETE FROM tb06_inventarioeliminados WHERE id = spidcod;
-		
-		SET @_totaleliminados = (SELECT COUNT(id) FROM tb06_inventarioeliminados);
-		
-		SELECT id, tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
-			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende,
-			tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory,
-			tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon,
-			tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado,
-			@_totaleliminados as totaleliminados
-		FROM tb06_inventarioeliminados;
-		
-	END;
-	END IF;
-	
-	IF opc = 6 THEN -- Eliminar Items de Inventario Eliminados- RECUPERACION :: tb06_inventarioeliminados
-	BEGIN
-		
-		DELETE FROM tb06_inventarioeliminados WHERE id = spidcod;
-		
-		SET @_totaleliminados = (SELECT COUNT(id) FROM tb06_inventarioeliminados);
-		
-		SELECT id, tb_strcodigo, tb_strnombre, tb_incostos, tb_indolar, tb_inprecio1, tb_inprecio2, tb_inprecio3, tb_inprecio4,
-			tb_inutilidad1, tb_inutilidad2, tb_inutilidad3, tb_inutilidad4, tb_instock, tb_indescuento, tb_contieneVende,
-			tb_contieneCompra, tb_ccventa, tb_ccCompra, tb_strdescrip, tb_inselectedTipo, tb_inselectedDivision, tb_selectedCategory,
-			tb_selectedSubCategoria, tb_selectedUbicacion, tb_selectedFabricante, tb_selectedPreferenciaMoneda, tb_selectedFacturarCon,
-			tb_selectedVende, tb_SelectedCompra, tb_selectedIVA, tb_selectedProveedor, tb_img1, tb_img2, tb_img3, tb_img4, tb_img5, tb_estado,
-			@_totaleliminados as totaleliminados
-		FROM tb06_inventarioeliminados;
-		
-	END;
-	END IF;
-
-# DATOS DE LA VISTA CONTEO
-
-	IF opc = 7 THEN -- LISTA DE DETALLLE DE CONTEO DEL PRODUCTO
-	BEGIN
-		SELECT t12.id, t12.codprod,
-		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t12.codprod) as strproducto,
-		t12.conteo, t12.stockactual, t12.comentario, t12.dtmregistro, t12.codacceso FROM tb12_detalleconteo t12;
-	END;
-	END IF;
-	
-	IF opc = 8 THEN -- AGREGAR DE DETALLLE DE CONTEO DEL PRODUCTO
-	BEGIN
-		
-		-- SELECT spindolar as conteo, spstrdescrip as comentario, spincostos as codacceso, spidcod as id, spinprecio1 as codprod;
-		IF NOT EXISTS (SELECT codprod FROM tb12_detalleconteo WHERE codprod = spccCompra AND codacceso = spincostos)THEN
-		BEGIN
-		
-			SET @_stockactual = (SELECT tb_instock FROM tb06_inventario WHERE id = spccCompra);
-		
-		-- SELECT spindolar as conteo, spstrdescrip as comentario, spincostos as codacceso, spidcod as id, spinprecio1 as codprod, @_stockactual as actual;
-	
-			INSERT INTO tb12_detalleconteo (codprod, conteo, stockactual, comentario, codacceso) VALUES
-			(spccCompra, spccventa, @_stockactual, spstrdescrip, spincostos);
-			
-		END;
-		ELSE
-		BEGIN
-		
-			SET @_stockactual = (SELECT tb_instock FROM tb06_inventario WHERE id = spccCompra);
-		
-			UPDATE tb12_detalleconteo SET
-				conteo=spccventa,
-				comentario=spstrdescrip,
-				stockactual=@_stockactual,
-				codacceso=spincostos
-			WHERE id=spidcod AND codprod = spccCompra AND codacceso = spincostos;
-			
-			
-			
-		END;
-		END IF;
-		
-		SELECT t12.id, t12.codprod,
-		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t12.codprod) as strproducto,
-		t12.conteo, t12.stockactual, t12.comentario, t12.dtmregistro, t12.codacceso FROM tb12_detalleconteo t12;
-
-	END;
-	END IF;
-	
-	IF opc = 9 THEN -- Quitar DE DETALLLE DE CONTEO DEL PRODUCTO
-	BEGIN
-		
-		DELETE FROM tb12_detalleconteo WHERE id = spidcod;
-		
-		SELECT t12.id, t12.codprod,
-		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t12.codprod) as strproducto,
-		t12.conteo, t12.stockactual, t12.comentario, t12.dtmregistro, t12.codacceso FROM tb12_detalleconteo t12;
-
-	END;
-	END IF;
-	
-	
-	
-	
-	
-	
-	
 
 END
 ;;

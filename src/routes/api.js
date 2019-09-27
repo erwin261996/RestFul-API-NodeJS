@@ -27,15 +27,19 @@ router_user.post('/fabricante', cifabricante.getFabricantes);
 router_user.post('/addfabricantes', cifabricante.addFabricantes);
 router_user.post('/delfabricantes', cifabricante.deleteFabricantes);
 
-// Productos
-router_user.post('/getcat_productos', ciproductos.getCatalogo);
-router_user.post('/getproductos', ciproductos.getProductos);
-router_user.post('/addproductos', ciproductos.addProductos);
-
 // Inventario
+router_user.post('/getcat_productos', ciproductos.getCatalogo);
 router_user.post('/addInventario', ciproductos.addInventario);
 router_user.post('/listInventario', ciproductos.listInventario);
 router_user.post('/deleteInvenntarioxid', ciproductos.deleteInvenntarioxid);
+// Inventario de Elementos Eliminados
+router_user.post('/listInventarioEliminados', ciproductos.listInventarioEliminados); 
+router_user.post('/recuperacionInvenntarioEliminadosxid', ciproductos.recuperacionInvenntarioEliminadosxid);
+router_user.post('/deleteInvenntarioEliminadosxid', ciproductos.deleteInvenntarioEliminadosxid);
+// Inventario Conteo de los producto 
+router_user.post('/listInventarioConteo', ciproductos.listInventarioConteo);
+router_user.post('/AddNewInventarioConteo', ciproductos.AddNewInventarioConteo);
+router_user.post('/QuitarNewInventarioConteo', ciproductos.QuitarNewInventarioConteo);
 
 // Directorio - Cliente
 router_user.post('/getcat_cliente', cidirectorio.getCatalogo);
