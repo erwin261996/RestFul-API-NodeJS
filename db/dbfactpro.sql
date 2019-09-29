@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 28/09/2019 18:49:05
+ Date: 28/09/2019 21:16:48
 */
 
 SET NAMES utf8mb4;
@@ -717,9 +717,9 @@ CREATE TABLE `tb06_inventario`  (
 -- ----------------------------
 -- Records of tb06_inventario
 -- ----------------------------
-INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 567, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 67, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
 INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 150, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 100, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 55, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
 -- Table structure for tb06_inventarioeliminados
@@ -1076,10 +1076,10 @@ CREATE TABLE `tb11_detafactura`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Table structure for tb11_inventarioconteo
+-- Table structure for tb12_inventarioconteo
 -- ----------------------------
-DROP TABLE IF EXISTS `tb11_inventarioconteo`;
-CREATE TABLE `tb11_inventarioconteo`  (
+DROP TABLE IF EXISTS `tb12_inventarioconteo`;
+CREATE TABLE `tb12_inventarioconteo`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prodcontados` int(5) NULL DEFAULT NULL,
   `codacceso` int(3) NULL DEFAULT NULL,
@@ -1087,36 +1087,22 @@ CREATE TABLE `tb11_inventarioconteo`  (
   `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of tb11_inventarioconteo
+-- Records of tb12_inventarioconteo
 -- ----------------------------
-INSERT INTO `tb11_inventarioconteo` VALUES (1, 2, 7, 572, '', '2019-09-28 18:43:26');
-INSERT INTO `tb11_inventarioconteo` VALUES (2, 3, 7, 572, '', '2019-09-28 18:44:54');
-INSERT INTO `tb11_inventarioconteo` VALUES (3, 1, 7, 572, '', '2019-09-28 18:45:53');
-
--- ----------------------------
--- Table structure for tb12_detalletempconteo
--- ----------------------------
-DROP TABLE IF EXISTS `tb12_detalletempconteo`;
-CREATE TABLE `tb12_detalletempconteo`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codprod` int(11) NULL DEFAULT NULL,
-  `conteo` int(5) NULL DEFAULT NULL,
-  `stockactual` int(5) NULL DEFAULT NULL,
-  `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `codacceso` int(5) NULL DEFAULT NULL,
-  `estado` int(3) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tb12_detalletempconteo
--- ----------------------------
-INSERT INTO `tb12_detalletempconteo` VALUES (2, 6, 56, 567, 'Esto es una prueba', '2019-09-28 17:24:54', 7, 574);
-INSERT INTO `tb12_detalletempconteo` VALUES (3, 9, 78, 100, 'eeeeeeeeeeeeeeee', '2019-09-28 17:25:33', 7, 574);
+INSERT INTO `tb12_inventarioconteo` VALUES (1, 2, 7, 572, '', '2019-09-28 18:43:26');
+INSERT INTO `tb12_inventarioconteo` VALUES (2, 3, 7, 572, '', '2019-09-28 18:44:54');
+INSERT INTO `tb12_inventarioconteo` VALUES (3, 1, 7, 572, '', '2019-09-28 18:45:53');
+INSERT INTO `tb12_inventarioconteo` VALUES (4, 3, 7, 572, '', '2019-09-28 18:54:21');
+INSERT INTO `tb12_inventarioconteo` VALUES (5, 1, 7, 572, '', '2019-09-28 19:03:04');
+INSERT INTO `tb12_inventarioconteo` VALUES (6, 2, 7, 572, '', '2019-09-28 20:01:05');
+INSERT INTO `tb12_inventarioconteo` VALUES (7, 2, 7, 573, '', '2019-09-28 20:01:31');
+INSERT INTO `tb12_inventarioconteo` VALUES (8, 1, 7, 573, '', '2019-09-28 20:05:17');
+INSERT INTO `tb12_inventarioconteo` VALUES (9, 2, 7, 573, '', '2019-09-28 21:05:06');
+INSERT INTO `tb12_inventarioconteo` VALUES (10, 2, 7, 573, '', '2019-09-28 21:11:55');
+INSERT INTO `tb12_inventarioconteo` VALUES (11, 2, 7, 573, '', '2019-09-28 21:14:04');
 
 -- ----------------------------
 -- Table structure for tb13_detalleconteo
@@ -1133,7 +1119,7 @@ CREATE TABLE `tb13_detalleconteo`  (
   `estado` int(3) NULL DEFAULT NULL,
   `idinvconteo` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb13_detalleconteo
@@ -1144,6 +1130,21 @@ INSERT INTO `tb13_detalleconteo` VALUES (3, 7, 45, 150, 'fdfd', '2019-09-28 18:4
 INSERT INTO `tb13_detalleconteo` VALUES (4, 6, 0, 567, 'dfdfgdfgd', '2019-09-28 18:43:46', 7, 572, 2);
 INSERT INTO `tb13_detalleconteo` VALUES (5, 9, 23, 100, 'wewwwe', '2019-09-28 18:43:53', 7, 572, 2);
 INSERT INTO `tb13_detalleconteo` VALUES (6, 9, 149, 100, 'Se daño una camisa, Tiene ollos', '2019-09-28 18:45:26', 7, 572, 3);
+INSERT INTO `tb13_detalleconteo` VALUES (7, 9, 56, 100, 'wwwwww', '2019-09-28 18:53:32', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (8, 6, 23, 567, 'bbbbbbbbbbbbb', '2019-09-28 18:53:39', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (9, 7, 34, 150, 'ccccccc', '2019-09-28 18:54:08', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (10, 7, 89, 150, 'Se vendieron uniddes', '2019-09-28 19:02:50', 7, 572, 5);
+INSERT INTO `tb13_detalleconteo` VALUES (11, 9, 0, 100, '', '2019-09-28 20:00:38', 7, 572, 6);
+INSERT INTO `tb13_detalleconteo` VALUES (12, 7, 0, 150, '', '2019-09-28 20:00:41', 7, 572, 6);
+INSERT INTO `tb13_detalleconteo` VALUES (13, 9, 0, 100, '', '2019-09-28 20:01:22', 7, 573, 7);
+INSERT INTO `tb13_detalleconteo` VALUES (14, 6, 0, 567, '', '2019-09-28 20:01:26', 7, 573, 7);
+INSERT INTO `tb13_detalleconteo` VALUES (15, 9, 0, 100, '', '2019-09-28 20:04:58', 7, 573, 8);
+INSERT INTO `tb13_detalleconteo` VALUES (16, 9, 24, 100, 'Esto es otra prueba', '2019-09-28 21:04:27', 7, 573, 9);
+INSERT INTO `tb13_detalleconteo` VALUES (17, 6, 10, 567, 'Se dañaron el resto.', '2019-09-28 21:04:42', 7, 573, 9);
+INSERT INTO `tb13_detalleconteo` VALUES (18, 9, 50, 100, 'Sedjhsjkdh', '2019-09-28 21:09:44', 7, 573, 10);
+INSERT INTO `tb13_detalleconteo` VALUES (19, 6, 50, 567, 'asdasdsad', '2019-09-28 21:09:57', 7, 573, 10);
+INSERT INTO `tb13_detalleconteo` VALUES (20, 9, 55, 50, 'Hay mas camisas', '2019-09-28 21:13:19', 7, 573, 11);
+INSERT INTO `tb13_detalleconteo` VALUES (21, 6, 67, 50, 'Hay mas audifonos', '2019-09-28 21:13:46', 7, 573, 11);
 
 -- ----------------------------
 -- View structure for vta01_productos
@@ -1691,8 +1692,8 @@ BEGIN
 				t11.codacceso,
 				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
 				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
-			FROM tb11_inventarioconteo t11
-			WHERE t11.codacceso = spidcod AND t11.estado = 572;
+			FROM tb12_inventarioconteo t11
+			WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;
 			
 			
 		END IF;
@@ -1705,13 +1706,24 @@ BEGIN
 		SET @_conteoItems = (SELECT COUNT(id) FROM tb13_detalleconteo WHERE codacceso = spidcod AND estado = 574 AND idinvconteo = 0);
 		
 		
-		INSERT INTO tb11_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
+		INSERT INTO tb12_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
 																			(@_conteoItems, spidcod, spccCompra, '');
 																			
-		SET @_maxid = (SELECT max(id) FROM tb11_inventarioconteo);
-																			
-		UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
-		WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
+		SET @_maxid = (SELECT max(id) FROM tb12_inventarioconteo);
+		
+		IF spinselectedTipo = 2 THEN -- CIERRA CONTEO / FINALIZA Y ACTUALIZA EL INVENTARIO
+		
+			UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
+				WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
+
+			UPDATE tb06_inventario t6 INNER JOIN tb13_detalleconteo t13 ON t13.codprod = t6.id
+				SET t6.tb_instock = t13.conteo
+			WHERE t13.idinvconteo = @_maxid;
+
+		ELSE -- CONTINUA O CIERRA EL CONTEO / FINALIZA Y NO ACTUALIZA EL INVENTARIO
+			UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
+				WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
+		END IF;
 																			
 		-- Lista de Conteo Abierto
 																			
@@ -1720,10 +1732,12 @@ BEGIN
 		t11.codacceso,
 		(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
 		t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
-		FROM tb11_inventarioconteo t11
-		WHERE t11.codacceso = spidcod AND t11.estado = spccCompra;
+		FROM tb12_inventarioconteo t11
+		WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;
 	END;
 	END IF;
+	
+	
 	
 	
 	
