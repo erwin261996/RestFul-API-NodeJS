@@ -41,6 +41,10 @@ router_user.post('/listInventarioConteo', ciproductos.listInventarioConteo);
 router_user.post('/AddNewInventarioConteo', ciproductos.AddNewInventarioConteo);
 router_user.post('/QuitarNewInventarioConteo', ciproductos.QuitarNewInventarioConteo);
 
+router_user.post('/ListaTocaInventarioConteo', ciproductos.ListaTocaInventarioConteo);
+router_user.post('/NexInventarioConteo', ciproductos.NexInventarioConteo);
+
+
 // Directorio - Cliente
 router_user.post('/getcat_cliente', cidirectorio.getCatalogo);
 router_user.post('/getcliente', cidirectorio.getClientes);
