@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Mysql
+ Source Server         : mysql
  Source Server Type    : MySQL
  Source Server Version : 100137
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 05/10/2019 13:11:17
+ Date: 28/09/2019 21:16:48
 */
 
 SET NAMES utf8mb4;
@@ -717,9 +717,9 @@ CREATE TABLE `tb06_inventario`  (
 -- ----------------------------
 -- Records of tb06_inventario
 -- ----------------------------
-INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 30, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 40, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 900, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 67, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 150, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 55, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
 -- Table structure for tb06_inventarioeliminados
@@ -1087,16 +1087,22 @@ CREATE TABLE `tb12_inventarioconteo`  (
   `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb12_inventarioconteo
 -- ----------------------------
-INSERT INTO `tb12_inventarioconteo` VALUES (1, 2, 7, 573, '', '2019-10-03 01:01:08');
-INSERT INTO `tb12_inventarioconteo` VALUES (2, 1, 7, 573, '', '2019-10-03 01:41:35');
-INSERT INTO `tb12_inventarioconteo` VALUES (3, 3, 7, 573, '', '2019-10-03 01:42:54');
-INSERT INTO `tb12_inventarioconteo` VALUES (4, 3, 7, 573, '', '2019-10-03 01:46:17');
-INSERT INTO `tb12_inventarioconteo` VALUES (5, 1, 7, 573, '', '2019-10-05 13:07:18');
+INSERT INTO `tb12_inventarioconteo` VALUES (1, 2, 7, 572, '', '2019-09-28 18:43:26');
+INSERT INTO `tb12_inventarioconteo` VALUES (2, 3, 7, 572, '', '2019-09-28 18:44:54');
+INSERT INTO `tb12_inventarioconteo` VALUES (3, 1, 7, 572, '', '2019-09-28 18:45:53');
+INSERT INTO `tb12_inventarioconteo` VALUES (4, 3, 7, 572, '', '2019-09-28 18:54:21');
+INSERT INTO `tb12_inventarioconteo` VALUES (5, 1, 7, 572, '', '2019-09-28 19:03:04');
+INSERT INTO `tb12_inventarioconteo` VALUES (6, 2, 7, 572, '', '2019-09-28 20:01:05');
+INSERT INTO `tb12_inventarioconteo` VALUES (7, 2, 7, 573, '', '2019-09-28 20:01:31');
+INSERT INTO `tb12_inventarioconteo` VALUES (8, 1, 7, 573, '', '2019-09-28 20:05:17');
+INSERT INTO `tb12_inventarioconteo` VALUES (9, 2, 7, 573, '', '2019-09-28 21:05:06');
+INSERT INTO `tb12_inventarioconteo` VALUES (10, 2, 7, 573, '', '2019-09-28 21:11:55');
+INSERT INTO `tb12_inventarioconteo` VALUES (11, 2, 7, 573, '', '2019-09-28 21:14:04');
 
 -- ----------------------------
 -- Table structure for tb13_detalleconteo
@@ -1113,21 +1119,32 @@ CREATE TABLE `tb13_detalleconteo`  (
   `estado` int(3) NULL DEFAULT NULL,
   `idinvconteo` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb13_detalleconteo
 -- ----------------------------
-INSERT INTO `tb13_detalleconteo` VALUES (1, 9, 89, 10, '', '2019-10-03 01:00:19', 7, 573, 1);
-INSERT INTO `tb13_detalleconteo` VALUES (2, 6, 90, 10, 'hjhkjhkjhj', '2019-10-03 01:00:29', 7, 573, 1);
-INSERT INTO `tb13_detalleconteo` VALUES (3, 9, 67, 10, 'fgggg', '2019-10-03 01:16:41', 7, 573, 2);
-INSERT INTO `tb13_detalleconteo` VALUES (4, 9, 54, 67, 'dsfsdfsd', '2019-10-03 01:42:26', 7, 573, 3);
-INSERT INTO `tb13_detalleconteo` VALUES (5, 7, 40, 10, 'sdfsdfs', '2019-10-03 01:42:35', 7, 573, 3);
-INSERT INTO `tb13_detalleconteo` VALUES (6, 6, 30, 10, 'sdfsdfs', '2019-10-03 01:43:32', 7, 573, 3);
-INSERT INTO `tb13_detalleconteo` VALUES (7, 9, 20, 67, 'sjljlskdffds', '2019-10-03 01:45:55', 7, 573, 4);
-INSERT INTO `tb13_detalleconteo` VALUES (8, 6, 30, 10, 'sjdlskd', '2019-10-03 01:46:08', 7, 573, 4);
-INSERT INTO `tb13_detalleconteo` VALUES (9, 7, 40, 10, 'sljdlsjdlk', '2019-10-03 01:46:35', 7, 573, 4);
-INSERT INTO `tb13_detalleconteo` VALUES (10, 9, 900, 20, 'Esto es un incremento', '2019-10-05 13:06:56', 7, 573, 5);
+INSERT INTO `tb13_detalleconteo` VALUES (1, 9, 4, 100, 'sdfdsf', '2019-09-28 18:42:58', 7, 572, 1);
+INSERT INTO `tb13_detalleconteo` VALUES (2, 7, 45, 150, 'sssssssssss', '2019-09-28 18:43:04', 7, 572, 1);
+INSERT INTO `tb13_detalleconteo` VALUES (3, 7, 45, 150, 'fdfd', '2019-09-28 18:43:39', 7, 572, 2);
+INSERT INTO `tb13_detalleconteo` VALUES (4, 6, 0, 567, 'dfdfgdfgd', '2019-09-28 18:43:46', 7, 572, 2);
+INSERT INTO `tb13_detalleconteo` VALUES (5, 9, 23, 100, 'wewwwe', '2019-09-28 18:43:53', 7, 572, 2);
+INSERT INTO `tb13_detalleconteo` VALUES (6, 9, 149, 100, 'Se daño una camisa, Tiene ollos', '2019-09-28 18:45:26', 7, 572, 3);
+INSERT INTO `tb13_detalleconteo` VALUES (7, 9, 56, 100, 'wwwwww', '2019-09-28 18:53:32', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (8, 6, 23, 567, 'bbbbbbbbbbbbb', '2019-09-28 18:53:39', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (9, 7, 34, 150, 'ccccccc', '2019-09-28 18:54:08', 7, 572, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (10, 7, 89, 150, 'Se vendieron uniddes', '2019-09-28 19:02:50', 7, 572, 5);
+INSERT INTO `tb13_detalleconteo` VALUES (11, 9, 0, 100, '', '2019-09-28 20:00:38', 7, 572, 6);
+INSERT INTO `tb13_detalleconteo` VALUES (12, 7, 0, 150, '', '2019-09-28 20:00:41', 7, 572, 6);
+INSERT INTO `tb13_detalleconteo` VALUES (13, 9, 0, 100, '', '2019-09-28 20:01:22', 7, 573, 7);
+INSERT INTO `tb13_detalleconteo` VALUES (14, 6, 0, 567, '', '2019-09-28 20:01:26', 7, 573, 7);
+INSERT INTO `tb13_detalleconteo` VALUES (15, 9, 0, 100, '', '2019-09-28 20:04:58', 7, 573, 8);
+INSERT INTO `tb13_detalleconteo` VALUES (16, 9, 24, 100, 'Esto es otra prueba', '2019-09-28 21:04:27', 7, 573, 9);
+INSERT INTO `tb13_detalleconteo` VALUES (17, 6, 10, 567, 'Se dañaron el resto.', '2019-09-28 21:04:42', 7, 573, 9);
+INSERT INTO `tb13_detalleconteo` VALUES (18, 9, 50, 100, 'Sedjhsjkdh', '2019-09-28 21:09:44', 7, 573, 10);
+INSERT INTO `tb13_detalleconteo` VALUES (19, 6, 50, 567, 'asdasdsad', '2019-09-28 21:09:57', 7, 573, 10);
+INSERT INTO `tb13_detalleconteo` VALUES (20, 9, 55, 50, 'Hay mas camisas', '2019-09-28 21:13:19', 7, 573, 11);
+INSERT INTO `tb13_detalleconteo` VALUES (21, 6, 67, 50, 'Hay mas audifonos', '2019-09-28 21:13:46', 7, 573, 11);
 
 -- ----------------------------
 -- View structure for vta01_productos
@@ -1408,22 +1425,6 @@ in spselectedUbicacion int, in spselectedFabricante int, in spselectedPreferenci
 in spselectedVende int, in spSelectedCompra int,  in spselectedIVA int, in spselectedProveedor int,
 in spimg1 varchar(40), in spimg2 varchar(40), in spimg3 varchar(40), in spimg4 varchar(40), in spimg5 varchar(40), in spestado int)
 BEGIN
-
-DROP TABLE IF EXISTS datosConteo;
-CREATE TEMPORARY TABLE IF NOT EXISTS datosConteo(
-		id INT NOT NULL auto_increment PRIMARY KEY,
-		idcod int(11) DEFAULT 0,
-		prodcontados int(11) DEFAULT 0,
-		estado int(11) DEFAULT 0,
-		strestado VARCHAR(40),
-		codacceso int(11) DEFAULT 0,
-		stracceso VARCHAR(80),
-		comentario VARCHAR(255),
-		dtmregistro VARCHAR(40),
-		idtabla INT(11) DEFAULT 0,
-UNIQUE (id)) ENGINE = MEMORY;
-																					
-			
 	-- Agregar, Actualizar inventario de productos
 	IF opc = 1 THEN
 	BEGIN
@@ -1633,10 +1634,9 @@ UNIQUE (id)) ENGINE = MEMORY;
 	BEGIN
 		
 		-- SELECT spindolar as conteo, spstrdescrip as comentario, spincostos as codacceso, spidcod as id, spccCompra as codprod;
-		IF EXISTS (SELECT id FROM tb13_detalleconteo WHERE id=spidcod AND codacceso = spincostos AND codprod = spccCompra)THEN
+		IF EXISTS (SELECT codprod FROM tb13_detalleconteo WHERE codacceso = spincostos AND codprod = spccCompra AND estado = 574)THEN
 		BEGIN
 		
-		 -- SELECT spincostos as codacceso, spccCompra as codprod, spidcod as id, spinselectedDivision as idinvconteo ;
 			SET @_stockactual = (SELECT tb_instock FROM tb06_inventario WHERE id = spccCompra);
 		
 			UPDATE tb13_detalleconteo SET
@@ -1644,9 +1644,8 @@ UNIQUE (id)) ENGINE = MEMORY;
 				comentario=spstrdescrip,
 				stockactual=@_stockactual,
 				codacceso=spincostos,
-				estado = spinselectedTipo,
-				idinvconteo = spinselectedDivision
-			WHERE id=spidcod AND codprod = spccCompra AND codacceso = spincostos AND idinvconteo = spinselectedDivision;
+				estado = 574
+			WHERE id=spidcod AND codprod = spccCompra AND codacceso = spincostos;
 			
 		END;
 		
@@ -1655,16 +1654,18 @@ UNIQUE (id)) ENGINE = MEMORY;
 		
 			SET @_stockactual = (SELECT tb_instock FROM tb06_inventario WHERE id = spccCompra);
 		
-			INSERT INTO tb13_detalleconteo (codprod, conteo, stockactual, comentario, codacceso, estado, idinvconteo) VALUES
-				(spccCompra, spccventa, @_stockactual, spstrdescrip, spincostos, spinselectedTipo, spinselectedDivision);
+			-- SELECT spindolar as conteo, spstrdescrip as comentario, spincostos as codacceso, spidcod as id, spinprecio1 as codprod, @_stockactual as actual;
+		
+			INSERT INTO tb13_detalleconteo (codprod, conteo, stockactual, comentario, codacceso, estado) VALUES
+				(spccCompra, spccventa, @_stockactual, spstrdescrip, spincostos, 574);
 				
 		END;
 		END IF;
 		
-		SELECT t13.id, t13.codprod,
-		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t13.codprod) as strproducto,
-		t13.conteo, t13.stockactual, t13.comentario, t13.dtmregistro, t13.codacceso FROM tb13_detalleconteo t13
-		WHERE t13.estado = spinselectedTipo AND t13.idinvconteo = spinselectedDivision AND codacceso = spincostos;
+		SELECT t12.id, t12.codprod,
+		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t12.codprod) as strproducto,
+		t12.conteo, t12.stockactual, t12.comentario, t12.dtmregistro, t12.codacceso FROM tb13_detalleconteo t12
+		WHERE t12.estado = 574;
 
 	END;
 	END IF;
@@ -1684,177 +1685,46 @@ UNIQUE (id)) ENGINE = MEMORY;
 	
 	IF opc = 10 THEN
 	BEGIN
-			
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
+		IF spccCompra = 1 THEN -- Lista de conteo Abiertos
+				
 			SELECT t11.id, t11.prodcontados, t11.estado, 
 				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
 				t11.codacceso,
 				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 1
+				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
 			FROM tb12_inventarioconteo t11
 			WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;
 			
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
-			SELECT t11.id, t11.prodcontados, t11.estado, 
-				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-				t11.codacceso,
-				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 2
-			FROM tb12_inventarioconteo t11
-			WHERE t11.codacceso = spidcod AND t11.estado = 573 ORDER BY id DESC;
 			
-			
-		SELECT idcod as id, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla as fila FROM datosConteo;
-		
-		
+		END IF;
 	END;
 	END IF;
 	
 	IF opc = 11 THEN -- Continuar conteo mas tarde!!.
 	BEGIN
 		
-		-- CONTA SI EL ESTADO ES (574= ABIERTO, 572 ESTADO PENDIENTE)
-		SET @_conteoItems = (SELECT COUNT(id) FROM tb13_detalleconteo WHERE codacceso = spidcod
-												AND estado = spinselectedDivision AND idinvconteo = spselectedCategory);
-												
-											
-												
+		SET @_conteoItems = (SELECT COUNT(id) FROM tb13_detalleconteo WHERE codacceso = spidcod AND estado = 574 AND idinvconteo = 0);
 		
-		IF spinselectedTipo = 0 THEN -- CONTINUAR
-		BEGIN
 		
-			IF NOT EXISTS (SELECT id FROM tb12_inventarioconteo WHERE id = spselectedCategory AND estado= spinselectedDivision) THEN
-			BEGIN
-			
-				INSERT INTO tb12_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
+		INSERT INTO tb12_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
 																			(@_conteoItems, spidcod, spccCompra, '');
 																			
-																			
-				SET @_maxid = (SELECT max(id) FROM tb12_inventarioconteo);		
-																			
-				UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
-						WHERE codacceso=spidcod AND idinvconteo = spselectedCategory AND estado = spinselectedDivision;
-				
-			END;
-			ELSE
-			BEGIN
-			
-				UPDATE tb12_inventarioconteo SET
-					prodcontados=@_conteoItems, 
-					codacceso=spidcod, 
-					estado=spccCompra, 
-					comentario =''
-				WHERE id = spselectedCategory AND estado= spinselectedDivision;
-			END;
-			END IF;
+		SET @_maxid = (SELECT max(id) FROM tb12_inventarioconteo);
 		
-		END;
-		ELSEIF spinselectedTipo = 1 THEN  -- CONTINUA O CIERRA EL CONTEO / FINALIZA Y NO ACTUALIZA EL INVENTARIO
-			BEGIN
-			
-			
-			
-				IF EXISTS (SELECT id FROM tb12_inventarioconteo WHERE id = spselectedCategory AND estado= spinselectedDivision) THEN
-				BEGIN
-				
-					-- select @_maxid, spccCompra, spidcod, spselectedCategory, spinselectedDivision, @_conteoItems;
-					
-					UPDATE tb12_inventarioconteo SET
-						prodcontados=@_conteoItems, 
-						codacceso=spidcod, 
-						estado=spccCompra, 
-						comentario =''
-					WHERE id = spselectedCategory AND estado= spinselectedDivision;
-																			
-					UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=spselectedCategory
-						WHERE codacceso=spidcod AND idinvconteo = spselectedCategory AND estado = spinselectedDivision;
-						
-				END;
-				ELSE
-				BEGIN
-				
-					INSERT INTO tb12_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
-																			(@_conteoItems, spidcod, spccCompra, '');
-																			
-					SET @_maxid = (SELECT max(id) FROM tb12_inventarioconteo);		
-																			
-					UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
-						WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
-						
-				END;
-				END IF;
-			
-				
-			END;		
-		ELSEIF spinselectedTipo = 2 THEN -- CIERRA CONTEO / FINALIZA Y ACTUALIZA EL INVENTARIO
-			BEGIN
-			
-				-- SELECT 'Entro' as entro;
-				
-				-- Si es 574, Funciona
-				-- Si es 573, Actualiza (NO probado)
-				IF EXISTS (SELECT id FROM tb13_detalleconteo WHERE idinvconteo = spselectedCategory AND estado= spinselectedDivision) THEN
-				BEGIN
-				
-					IF spselectedCategory = 0 THEN
-						INSERT INTO tb12_inventarioconteo (prodcontados, codacceso, estado, comentario) VALUES
-																			(@_conteoItems, spidcod, spccCompra, '');
-																			
-						SET @_maxid = (SELECT max(id) FROM tb12_inventarioconteo);		
-																				
-						UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
-							WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
-							
-							
-						UPDATE tb06_inventario t6 INNER JOIN tb13_detalleconteo t13 ON t13.codprod = t6.id
-							SET t6.tb_instock = t13.conteo
-						WHERE t13.idinvconteo = @_maxid;
-							
-							
-					ELSE
-					
-						UPDATE tb12_inventarioconteo SET
-							prodcontados=@_conteoItems, 
-							codacceso=spidcod, 
-							estado=spccCompra, 
-							comentario =''
-						WHERE id = spselectedCategory AND estado= spinselectedDivision;
-																				
-						UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=spselectedCategory
-							WHERE codacceso=spidcod AND idinvconteo = spselectedCategory AND estado = spinselectedDivision;
-							
-							
-						UPDATE tb06_inventario t6 INNER JOIN tb13_detalleconteo t13 ON t13.codprod = t6.id
-							SET t6.tb_instock = t13.conteo
-						WHERE t13.idinvconteo = spselectedCategory;
-				
-					END IF;
-				END;
-				END IF;
-				
-				
-			END;
+		IF spinselectedTipo = 2 THEN -- CIERRA CONTEO / FINALIZA Y ACTUALIZA EL INVENTARIO
+		
+			UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
+				WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
+
+			UPDATE tb06_inventario t6 INNER JOIN tb13_detalleconteo t13 ON t13.codprod = t6.id
+				SET t6.tb_instock = t13.conteo
+			WHERE t13.idinvconteo = @_maxid;
+
+		ELSE -- CONTINUA O CIERRA EL CONTEO / FINALIZA Y NO ACTUALIZA EL INVENTARIO
+			UPDATE tb13_detalleconteo SET estado=spccCompra, idinvconteo=@_maxid
+				WHERE codacceso=spidcod AND idinvconteo = 0 AND estado = 574;
 		END IF;
 																			
-		-- Lista de Conteo Abierto
-																			
-		/*SELECT t11.id, t11.prodcontados, t11.estado, 
-		(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-		t11.codacceso,
-		(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-		t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
-		FROM tb12_inventarioconteo t11
-		WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;*/
-		
-	END;
-	END IF;
-	
-	IF opc = 12 THEN -- ELIMINA LA LISTA DE CONTEO DE LOS ESTADOS ABIERTOS
-	BEGIN
-	
-		DELETE FROM tb12_inventarioconteo WHERE id = spidcod;
-		DELETE FROM tb13_detalleconteo WHERE idinvconteo = spidcod;
-		
 		-- Lista de Conteo Abierto
 																			
 		SELECT t11.id, t11.prodcontados, t11.estado, 
@@ -1863,33 +1733,9 @@ UNIQUE (id)) ENGINE = MEMORY;
 		(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
 		t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
 		FROM tb12_inventarioconteo t11
-		WHERE t11.codacceso = spccCompra AND t11.estado = 572 ORDER BY id DESC;
-		
+		WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;
 	END;
 	END IF;
-	
-	IF opc = 13 THEN -- CONTINUA LA LISTA DE CONTEO DE LOS ESTADOS ABIERTOS
-	BEGIN
-	
-		SELECT t13.id, t13.codprod,
-			(SELECT tb_strnombre FROM tb06_inventario WHERE id = t13.codprod) as strproducto,
-			t13.conteo, t13.stockactual, t13.comentario, t13.dtmregistro, t13.codacceso
-		FROM tb13_detalleconteo t13 WHERE t13.idinvconteo = spidcod AND t13.estado = 572 AND t13.codacceso = spccCompra;
-		
-	END;
-	END IF;
-	
-	IF opc = 14 THEN -- LISTA DE CONTEO CERRADOS
-	BEGIN
-	
-		SELECT t13.id, t13.codprod,
-		(SELECT tb_strnombre FROM tb06_inventario WHERE id = t13.codprod) as strproducto,
-		t13.conteo, t13.stockactual, t13.comentario, t13.dtmregistro, t13.codacceso FROM tb13_detalleconteo t13
-		WHERE t13.estado = 573 AND t13.idinvconteo = spidcod AND codacceso = spccCompra;
-		
-	END;
-	END IF;
-	
 	
 	
 	

@@ -43,6 +43,9 @@ router_user.post('/QuitarNewInventarioConteo', ciproductos.QuitarNewInventarioCo
 
 router_user.post('/ListaTocaInventarioConteo', ciproductos.ListaTocaInventarioConteo);
 router_user.post('/NexInventarioConteo', ciproductos.NexInventarioConteo);
+router_user.post('/DeleteInventarioConteoOpen', ciproductos.DeleteInventarioConteoOpen);
+router_user.post('/continuarInventarioConteoOpen', ciproductos.continuarInventarioConteoOpen);
+router_user.post('/listaConteoCerrados', ciproductos.listaConteoCerrados);
 
 
 // Directorio - Cliente

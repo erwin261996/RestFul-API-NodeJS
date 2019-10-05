@@ -142,12 +142,12 @@ controller.listInventarioConteo = (req, res, next) => {
 }
 
 controller.AddNewInventarioConteo = (req, res, next) => {
-    const { id, codacceso, conteo, codprod, comentario } = req.body;
+    const { id, codacceso, conteo, codprod, comentario, hstate, hList } = req.body;
 
     req.getConnection((err, conn)=>{
         if (err) next(err)
         else {
-            conn.query('call spfactura_01inventario(8, ?, "", "", ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, ?, ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[id, codacceso, conteo, codprod, comentario], (err, result)=> {
+            conn.query('call spfactura_01inventario(8, ?, "", "", ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, ?, ?, ?, ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[id, codacceso, conteo, codprod, comentario, hstate, hList], (err, result)=> {
                 if(err)
                 res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -182,7 +182,7 @@ controller.ListaTocaInventarioConteo = (req, res, next) => {
     req.getConnection((err, conn)=>{
         if (err) next(err)
         else {
-            conn.query('call spfactura_01inventario(10, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[codacceso, toca], (err, result)=> {
+            conn.query('call spfactura_01inventario(10, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[codacceso, toca], (err, result)=> {
                 if(err)
                 res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -195,12 +195,12 @@ controller.ListaTocaInventarioConteo = (req, res, next) => {
 
 // Next Conteo
 controller.NexInventarioConteo = (req, res, next) => {
-    const { codacceso, estado, opc } = req.body;
+    const { codacceso, estado, opc, hstate, hList } = req.body;
 
     req.getConnection((err, conn)=>{
         if (err) next(err)
         else {
-            conn.query('call spfactura_01inventario(11, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[codacceso, estado, opc], (err, result)=> {
+            conn.query('call spfactura_01inventario(11, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", ?, ?, ?, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[codacceso, estado, opc, hstate, hList], (err, result)=> {
                 if(err)
                 res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
                 else {
@@ -210,6 +210,61 @@ controller.NexInventarioConteo = (req, res, next) => {
         }
     })
 }
+
+// Delete Conteo Abierto
+controller.DeleteInventarioConteoOpen = (req, res, next) => {
+    const { idprod, codacceso } = req.body;
+
+    req.getConnection((err, conn)=>{
+        if (err) next(err)
+        else {
+            conn.query('call spfactura_01inventario(12, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[idprod, codacceso], (err, result)=> {
+                if(err)
+                res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
+                else {
+                    res.send(JSON.stringify(result[0]));
+                }
+            })
+        }
+    })
+}
+
+// Continuar Conteo Abierto
+controller.continuarInventarioConteoOpen = (req, res, next) => {
+    const { idList, codacceso } = req.body;
+
+    req.getConnection((err, conn)=>{
+        if (err) next(err)
+        else {
+            conn.query('call spfactura_01inventario(13, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[idList, codacceso], (err, result)=> {
+                if(err)
+                res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
+                else {
+                    res.send(JSON.stringify(result[0]));
+                }
+            })
+        }
+    })
+}
+
+// Continuar Conteo Cerados
+controller.listaConteoCerrados = (req, res, next) => {
+    const { idList, codacceso } = req.body;
+
+    req.getConnection((err, conn)=>{
+        if (err) next(err)
+        else {
+            conn.query('call spfactura_01inventario(14, ?, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ?, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "", "", "", 0)',[idList, codacceso], (err, result)=> {
+                if(err)
+                res.send(JSON.stringify({"status": 500, "error": err, "response": null}));
+                else {
+                    res.send(JSON.stringify(result[0]));
+                }
+            })
+        }
+    })
+}
+
 
 
 module.exports = controller;
