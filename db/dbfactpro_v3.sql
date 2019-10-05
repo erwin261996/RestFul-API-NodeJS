@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 05/10/2019 13:48:31
+ Date: 05/10/2019 13:11:17
 */
 
 SET NAMES utf8mb4;
@@ -718,8 +718,8 @@ CREATE TABLE `tb06_inventario`  (
 -- Records of tb06_inventario
 -- ----------------------------
 INSERT INTO `tb06_inventario` VALUES (6, '783672637', 'Audifonos Gamer Roller', 67.00, 2.00, 69.79, 72.04, 71.28, 69.79, 4, 7, 6, 4, 30, 0, 67.00, 100.00, 0, 0, 'dfsdfsdfsdf', 560, 563, 290, 565, 539, 38, 536, 567, 288, 288, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 670, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
-INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 120, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (7, '483798', 'Impresora L110', 900.00, 78.00, 909.09, 918.37, 927.84, 937.50, 1, 2, 3, 4, 40, 0, 10.00, 230.00, 1, 1, 'Esto es una prueba impresora..', 560, 563, 298, 565, 539, 80, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
+INSERT INTO `tb06_inventario` VALUES (9, '34897938', 'Camisa XL', 320.00, 9.55, 336.84, 326.53, 344.09, 329.90, 5, 2, 7, 3, 900, 1, 1.00, 300.00, 1, 0, 'Este es un producto de prueba..', 560, 563, 311, 565, 539, 39, 536, 567, 287, 287, 534, 5, '', '', '', '', '', 8);
 
 -- ----------------------------
 -- Table structure for tb06_inventarioeliminados
@@ -1087,12 +1087,16 @@ CREATE TABLE `tb12_inventarioconteo`  (
   `comentario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `dtmregistro` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb12_inventarioconteo
 -- ----------------------------
+INSERT INTO `tb12_inventarioconteo` VALUES (1, 2, 7, 573, '', '2019-10-03 01:01:08');
+INSERT INTO `tb12_inventarioconteo` VALUES (2, 1, 7, 573, '', '2019-10-03 01:41:35');
+INSERT INTO `tb12_inventarioconteo` VALUES (3, 3, 7, 573, '', '2019-10-03 01:42:54');
 INSERT INTO `tb12_inventarioconteo` VALUES (4, 3, 7, 573, '', '2019-10-03 01:46:17');
+INSERT INTO `tb12_inventarioconteo` VALUES (5, 1, 7, 573, '', '2019-10-05 13:07:18');
 
 -- ----------------------------
 -- Table structure for tb13_detalleconteo
@@ -1109,14 +1113,21 @@ CREATE TABLE `tb13_detalleconteo`  (
   `estado` int(3) NULL DEFAULT NULL,
   `idinvconteo` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb13_detalleconteo
 -- ----------------------------
+INSERT INTO `tb13_detalleconteo` VALUES (1, 9, 89, 10, '', '2019-10-03 01:00:19', 7, 573, 1);
+INSERT INTO `tb13_detalleconteo` VALUES (2, 6, 90, 10, 'hjhkjhkjhj', '2019-10-03 01:00:29', 7, 573, 1);
+INSERT INTO `tb13_detalleconteo` VALUES (3, 9, 67, 10, 'fgggg', '2019-10-03 01:16:41', 7, 573, 2);
+INSERT INTO `tb13_detalleconteo` VALUES (4, 9, 54, 67, 'dsfsdfsd', '2019-10-03 01:42:26', 7, 573, 3);
+INSERT INTO `tb13_detalleconteo` VALUES (5, 7, 40, 10, 'sdfsdfs', '2019-10-03 01:42:35', 7, 573, 3);
+INSERT INTO `tb13_detalleconteo` VALUES (6, 6, 30, 10, 'sdfsdfs', '2019-10-03 01:43:32', 7, 573, 3);
 INSERT INTO `tb13_detalleconteo` VALUES (7, 9, 20, 67, 'sjljlskdffds', '2019-10-03 01:45:55', 7, 573, 4);
 INSERT INTO `tb13_detalleconteo` VALUES (8, 6, 30, 10, 'sjdlskd', '2019-10-03 01:46:08', 7, 573, 4);
 INSERT INTO `tb13_detalleconteo` VALUES (9, 7, 40, 10, 'sljdlsjdlk', '2019-10-03 01:46:35', 7, 573, 4);
+INSERT INTO `tb13_detalleconteo` VALUES (10, 9, 900, 20, 'Esto es un incremento', '2019-10-05 13:06:56', 7, 573, 5);
 
 -- ----------------------------
 -- View structure for vta01_productos
@@ -1826,27 +1837,6 @@ UNIQUE (id)) ENGINE = MEMORY;
 		END IF;
 																			
 		-- Lista de Conteo Abierto
-		
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
-			SELECT t11.id, t11.prodcontados, t11.estado, 
-				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-				t11.codacceso,
-				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 1
-			FROM tb12_inventarioconteo t11
-			WHERE t11.codacceso = spidcod AND t11.estado = 572 ORDER BY id DESC;
-			
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
-			SELECT t11.id, t11.prodcontados, t11.estado, 
-				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-				t11.codacceso,
-				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 2
-			FROM tb12_inventarioconteo t11
-			WHERE t11.codacceso = spidcod AND t11.estado = 573 ORDER BY id DESC;
-			
-			
-		SELECT idcod as id, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla as fila FROM datosConteo;
 																			
 		/*SELECT t11.id, t11.prodcontados, t11.estado, 
 		(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
@@ -1867,26 +1857,13 @@ UNIQUE (id)) ENGINE = MEMORY;
 		
 		-- Lista de Conteo Abierto
 																			
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
-			SELECT t11.id, t11.prodcontados, t11.estado, 
-				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-				t11.codacceso,
-				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 1
-			FROM tb12_inventarioconteo t11
-			WHERE t11.codacceso = spccCompra AND t11.estado = 572 ORDER BY id DESC;
-			
-		INSERT INTO datosConteo ( idcod, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla )
-			SELECT t11.id, t11.prodcontados, t11.estado, 
-				(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
-				t11.codacceso,
-				(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
-				t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro, 2
-			FROM tb12_inventarioconteo t11
-			WHERE t11.codacceso = spccCompra AND t11.estado = 573 ORDER BY id DESC;
-			
-			
-		SELECT idcod as id, prodcontados, estado, strestado, codacceso, stracceso, comentario, dtmregistro, idtabla as fila FROM datosConteo;
+		SELECT t11.id, t11.prodcontados, t11.estado, 
+		(SELECT  t4.strdescrip FROM tb04_catalogo t4 WHERE t4.id = t11.estado) as strestado,
+		t11.codacceso,
+		(SELECT CONCAT_WS(' ',t1.nombre,t1.apellido) FROM tb01_usuario t1 WHERE t1.id = t11.codacceso) AS stracceso,
+		t11.comentario, DATE_FORMAT(t11.dtmregistro, '%d/%m/%Y %H:%i') as dtmregistro
+		FROM tb12_inventarioconteo t11
+		WHERE t11.codacceso = spccCompra AND t11.estado = 572 ORDER BY id DESC;
 		
 	END;
 	END IF;
